@@ -9,6 +9,7 @@ require('dotenv').config();
 const { startCronJobs } = require('./cronJobs');
 
 const app = express();
+app.set('trust proxy', 1); // Trust Render's reverse proxy for rate limiting
 
 // Start background cron jobs
 startCronJobs();
