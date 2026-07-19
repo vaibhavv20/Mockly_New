@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Questions - Mockly Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bento.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/saved_questions.css">
+</head>
+<body class="dashboard-body">
+    
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-glow-line"></div>
+        <div class="footer-content">
+            <div class="footer-brand-section">
+                <a href="#" class="brand footer-brand-logo">
+                    <div class="logo-mark">M</div>
+                    <span class="brand-text">Mockly</span>
+                </a>
+                <p class="footer-desc">India's most technologically advanced test series platform. Train on the exact real-exam interface and claim your unfair advantage.</p>
+                <div class="social-links-premium">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-section">
+                <div class="footer-link-group">
+                    <h4>Top Exams</h4>
+                    <a href="#">SSC CGL Test Series</a>
+                    <a href="#">SBI PO Mock Test</a>
+                    <a href="#">RRB NTPC Mocks</a>
+                    <a href="#">UPSC Prelims</a>
+                    <a href="#">CTET Paper 1</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Study Resources</h4>
+                    <a href="#">Free PDF Notes</a>
+                    <a href="#">Exam Syllabus</a>
+                    <a href="#">Previous Year Papers</a>
+                    <a href="#">Topper Strategies</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Platform</h4>
+                    <a href="#">Mockly Pass PRO</a>
+                    <a href="#">AI Analytics</a>
+                    <a href="#">TCS Interface</a>
+                    <a href="#">Pricing</a>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Ahead</h4>
+                    <p>Get the latest exam alerts and daily GK updates delivered straight to your inbox.</p>
+                    <form class="premium-newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <div class="app-downloads-mini">
+                        <p>Get the App</p>
+                        <div class="dl-buttons">
+                            <a href="#"><i class="fa-brands fa-google-play"></i></a>
+                            <a href="#"><i class="fa-brands fa-apple"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2026 Mockly Premium. All rights reserved.
+            </div>
+            <div class="footer-legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    
+    <!-- Background Base -->
+    <div class="db-base-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <div class="nav-links">
+                <a href="exams.html" class="nav-item">Exams</a>
+                <a href="test-details.html" class="nav-item text-purple" style="font-weight: 600;"><i class="fa-solid fa-bolt"></i> Test Series</a>
+                <a href="live-tests.html" class="nav-item"><span class="pulse-dot-small text-red"></span> Live Tests</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon" style="display:none;"></i>
+                </button>
+                <button class="btn-ghost" id="nav-login-btn">Login</button>
+                <button class="btn-primary" id="nav-signup-btn">Sign Up Free</button>
+                
+                <div id="user-menu" style="display: none; align-items: center; gap: 15px;">
+                    <a href="dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;" title="Go to Dashboard">
+                        <img src="assets/avatars/memoji_1.webp" id="nav-avatar" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--primary-color);">
+                        <span id="user-greeting" style="font-weight: 500;"></span>
+                    </a>
+                    <button class="btn-ghost" id="nav-logout-btn" style="border: 1px solid var(--border-glass);">Logout</button>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <div class="drawer-header">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <button class="close-drawer-btn" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="exams.html" class="drawer-item" style="--anim-order: 1;"><div class="d-icon-box"><i class="fa-solid fa-layer-group"></i></div> Exams</a>
+            <a href="test-details.html" class="drawer-item" style="--anim-order: 2;"><div class="d-icon-box text-purple"><i class="fa-solid fa-bolt"></i></div> Test Series</a>
+            <a href="live-tests.html" class="drawer-item" style="--anim-order: 3;"><div class="d-icon-box text-red"><i class="fa-solid fa-tower-broadcast"></i></div> Live Tests</a>
+        </div>
+        <div class="drawer-actions">
+            <button class="btn-ghost w-100 mb-2 drawer-login-btn">Login</button>
+            <button class="btn-primary w-100 drawer-signup-btn premium-cta">Sign Up Free</button>
+        </div>
+        <div class="drawer-socials">
+            <a href="#" class="d-social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="d-social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+
+    <!-- ============ DASHBOARD LAYOUT ============ -->
+    <div class="db-layout-wrapper">
+        
+        <!-- Left Sidebar -->
+        <aside class="db-sidebar">
+            <div class="sidebar-profile">
+                <div class="sidebar-avatar-wrapper" id="sidebar-avatar-wrapper">
+                    <img src="assets/avatars/memoji_1.webp" alt="Profile" class="sidebar-avatar" id="sidebar-avatar">
+                    <div class="premium-badge"><i class="fa-solid fa-crown"></i></div>
+                </div>
+                <div class="sidebar-user-info">
+                    <h3 id="sidebar-username">Aspirant</h3>
+                    <span class="sidebar-user-email" id="sidebar-email">candidate@example.com</span>
+                    <span class="sidebar-user-role" id="sidebar-role">Free Member</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link">
+                    <i class="fa-solid fa-house"></i> Overview
+                </a>
+                <a href="dashboard.html?tab=ai" class="sidebar-link ai-nav-link">
+                    <svg class="ai-tab-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="url(#aiGradient)"/>
+                        <path d="M20 3L20.8 5.2L23 6L20.8 6.8L20 9L19.2 6.8L17 6L19.2 5.2L20 3Z" fill="url(#aiGradient)"/>
+                        <path d="M4 18L4.8 20.2L7 21L4.8 21.8L4 24L3.2 21.8L1 21L3.2 20.2L4 18Z" fill="url(#aiGradient)"/>
+                        <defs>
+                            <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#c084fc"/>
+                                <stop offset="100%" stop-color="#3b82f6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    AI Analysis <span class="badge-new-anim">NEW</span>
+                </a>
+                <a href="analytics.html" class="sidebar-link">
+                    <i class="fa-solid fa-chart-pie"></i> Analytics
+                </a>
+                <a href="mock_tests.html" class="sidebar-link">
+                    <i class="fa-solid fa-file-pen"></i> Mock Tests
+                </a>
+                <a href="saved_questions.html" class="sidebar-link active">
+                    <i class="fa-solid fa-bookmark"></i> Saved Questions
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link logout-link" id="sidebar-logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="db-content">
+            <div class="sq-container fade-in">
+                
+                <!-- Header -->
+                <header class="sq-header">
+                    <div>
+                        <h1 class="sq-title text-gradient">Saved Questions</h1>
+                        <p class="sq-subtitle">Your personal revision hub. Master your weakest areas.</p>
+                    </div>
+                </header>
+
+                <!-- Split Pane Layout -->
+                <div class="sq-split-pane">
+                    
+                    <!-- LEFT PANE: Library / List -->
+                    <div class="sq-left-pane">
+                        <div class="sq-search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Search questions..." class="sq-search-input">
+                        </div>
+                        
+                        <!-- Advanced Filter Architecture -->
+                        <div class="sq-advanced-filters">
+                            
+                            <!-- Tier 1: Exam Board -->
+                            <div class="sq-tier-1">
+                                <button class="sq-t1-btn active" onclick="switchBoard('ssc', this)">SSC</button>
+                                <button class="sq-t1-btn" onclick="switchBoard('rrb', this)">RRB</button>
+                                <button class="sq-t1-btn" onclick="switchBoard('upsc', this)">UPSC</button>
+                                <button class="sq-t1-btn" onclick="switchBoard('bank', this)">Bank</button>
+                            </div>
+
+                            <!-- Tier 2: Specific Exam -->
+                            <div class="sq-tier-2" id="tier-2-container">
+                                <!-- Default loaded for SSC -->
+                                <button class="sq-t2-chip active">All SSC</button>
+                                <button class="sq-t2-chip">CGL</button>
+                                <button class="sq-t2-chip">CHSL</button>
+                                <button class="sq-t2-chip">CPO</button>
+                                <button class="sq-t2-chip">MTS</button>
+                            </div>
+
+                            <!-- Tier 3: Subject / Section -->
+                            <div class="sq-tier-3">
+                                <button class="sq-t3-chip active"><i class="fa-solid fa-layer-group"></i> All</button>
+                                <button class="sq-t3-chip"><i class="fa-solid fa-calculator"></i> Quant</button>
+                                <button class="sq-t3-chip"><i class="fa-solid fa-spell-check"></i> English</button>
+                                <button class="sq-t3-chip"><i class="fa-solid fa-brain"></i> Reason</button>
+                                <button class="sq-t3-chip"><i class="fa-solid fa-globe"></i> GK</button>
+                            </div>
+                        </div>
+
+                        <div class="sq-list">
+                            <!-- List Item 1 -->
+                            <div class="sq-list-item active" onclick="selectQuestion(1)">
+                                <div class="sq-li-top">
+                                    <span class="sq-li-subject text-blue"><i class="fa-solid fa-calculator"></i> Quant</span>
+                                    <span class="sq-li-date">Jul 8</span>
+                                </div>
+                                <p class="sq-li-snippet">A boat can travel 20 km downstream in 24 min. The ratio of the speed of the boat in still water to the speed of stream is 4:1...</p>
+                                <div class="sq-li-tags">
+                                    <span class="sq-tag bg-red">Hard</span>
+                                    <span class="sq-tag">Boats & Streams</span>
+                                </div>
+                            </div>
+
+                            <!-- List Item 2 -->
+                            <div class="sq-list-item" onclick="selectQuestion(2)">
+                                <div class="sq-li-top">
+                                    <span class="sq-li-subject text-green"><i class="fa-solid fa-spell-check"></i> English</span>
+                                    <span class="sq-li-date">Jul 7</span>
+                                </div>
+                                <p class="sq-li-snippet">Identify the grammatical error in the following sentence: "Neither of the two candidates who had applied for the post..."</p>
+                                <div class="sq-li-tags">
+                                    <span class="sq-tag bg-yellow">Tricky</span>
+                                    <span class="sq-tag">Grammar</span>
+                                </div>
+                            </div>
+
+                            <!-- List Item 3 -->
+                            <div class="sq-list-item" onclick="selectQuestion(3)">
+                                <div class="sq-li-top">
+                                    <span class="sq-li-subject text-purple"><i class="fa-solid fa-brain"></i> Reasoning</span>
+                                    <span class="sq-li-date">Jun 28</span>
+                                </div>
+                                <p class="sq-li-snippet">Statements: Only a few Cats are Dogs. All Dogs are Rats. No Rat is a Mouse. Conclusions: I. Some Cats are Rats. II...</p>
+                                <div class="sq-li-tags">
+                                    <span class="sq-tag bg-red">Syllogism</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT PANE: Viewer -->
+                    <div class="sq-right-pane" id="question-viewer">
+                        
+                        <!-- Top Toolbar -->
+                        <div class="sq-viewer-toolbar">
+                            <div class="sq-vt-left">
+                                <span class="sq-source-badge">Source: SSC CGL Tier 1 - Mock 14</span>
+                            </div>
+                            <div class="sq-vt-right">
+                                <div class="practice-mode-toggle">
+                                    <span class="pm-label">Practice Mode</span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="practiceModeToggle" checked onchange="togglePracticeMode()">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <button class="btn-icon-only text-red" title="Remove Bookmark"><i class="fa-solid fa-bookmark"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Question Content -->
+                        <div class="sq-question-box">
+                            <div class="q-number">Q. 45</div>
+                            <p class="q-text">A boat can travel 20 km downstream in 24 min. The ratio of the speed of the boat in still water to the speed of stream is 4:1. How much time will the boat take to cover 15 km upstream?</p>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="sq-options" id="options-container">
+                            <!-- In practice mode, options look like radio buttons. When revealed, correct option highlights green -->
+                            <div class="sq-option">
+                                <span class="opt-label">A</span>
+                                <span class="opt-text">20 mins</span>
+                            </div>
+                            <div class="sq-option">
+                                <span class="opt-label">B</span>
+                                <span class="opt-text">25 mins</span>
+                            </div>
+                            <div class="sq-option correct-opt" id="correct-option">
+                                <span class="opt-label">C</span>
+                                <span class="opt-text">30 mins</span>
+                            </div>
+                            <div class="sq-option">
+                                <span class="opt-label">D</span>
+                                <span class="opt-text">40 mins</span>
+                            </div>
+                        </div>
+
+                        <!-- Reveal Button (Only visible in Practice Mode) -->
+                        <div class="sq-reveal-area" id="reveal-area">
+                            <button class="btn-primary" onclick="revealAnswer()"><i class="fa-solid fa-eye"></i> Reveal Answer & Solution</button>
+                        </div>
+
+                        <!-- Detailed Solution (Hidden in Practice Mode) -->
+                        <div class="sq-solution-box" id="solution-box" style="display: none;">
+                            <h3><i class="fa-solid fa-lightbulb text-yellow"></i> Detailed Solution</h3>
+                            <div class="sol-content">
+                                <p><strong>Correct Answer: Option C (30 mins)</strong></p>
+                                <p>Let speed of boat in still water = \( 4x \) km/hr<br>
+                                Let speed of stream = \( 1x \) km/hr</p>
+                                <p>Downstream speed = \( (4x + x) = 5x \) km/hr</p>
+                                <p>Given, distance = 20 km, time = 24 mins = 24/60 hrs = 2/5 hrs.</p>
+                                <p>Speed = Distance / Time<br>
+                                \( 5x = 20 / (2/5) \)<br>
+                                \( 5x = 50 \Rightarrow x = 10 \)</p>
+                                <p>So, speed of boat = 40 km/hr, speed of stream = 10 km/hr.</p>
+                                <p>Upstream speed = \( (4x - x) = 3x = 30 \) km/hr.</p>
+                                <p>Time to cover 15 km upstream = 15 / 30 hrs = 1/2 hr = <strong>30 mins</strong>.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+
+    <!-- MathJax for rendering equations in solutions -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['$$', '$$']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Simple script to handle Practice Mode logic
+        function togglePracticeMode() {
+            const isPractice = document.getElementById('practiceModeToggle').checked;
+            const revealArea = document.getElementById('reveal-area');
+            const solutionBox = document.getElementById('solution-box');
+            const correctOpt = document.getElementById('correct-option');
+            
+            if (isPractice) {
+                // Hide solution, show reveal button, hide correct styling
+                revealArea.style.display = 'block';
+                solutionBox.style.display = 'none';
+                correctOpt.classList.remove('revealed');
+            } else {
+                // Show solution directly
+                revealArea.style.display = 'none';
+                solutionBox.style.display = 'block';
+                correctOpt.classList.add('revealed');
+            }
+        }
+
+        function revealAnswer() {
+            document.getElementById('practiceModeToggle').checked = false;
+            togglePracticeMode();
+        }
+
+        function selectQuestion(id) {
+            // Visually select item in list
+            document.querySelectorAll('.sq-list-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            // Reset the practice mode to simulate loading a new question.
+            document.getElementById('practiceModeToggle').checked = true;
+            togglePracticeMode();
+        }
+
+        // --- Advanced Filtering Logic ---
+        const boardExams = {
+            'ssc': ['All SSC', 'CGL', 'CHSL', 'CPO', 'MTS', 'GD Constable'],
+            'rrb': ['All RRB', 'NTPC', 'Group D', 'ALP', 'JE'],
+            'upsc': ['All UPSC', 'CSE Prelims', 'NDA', 'CDS', 'CAPF'],
+            'bank': ['All Bank', 'IBPS PO', 'SBI PO', 'RBI Grade B', 'Clerk']
+        };
+
+        function switchBoard(boardKey, btnElement) {
+            // Update active state on Tier 1
+            document.querySelectorAll('.sq-t1-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Get the exams for the selected board
+            const exams = boardExams[boardKey];
+            const container = document.getElementById('tier-2-container');
+            
+            // Clear current chips
+            container.innerHTML = '';
+
+            // Generate new chips
+            exams.forEach((exam, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'sq-t2-chip' + (index === 0 ? ' active' : '');
+                btn.textContent = exam;
+                btn.onclick = function() {
+                    document.querySelectorAll('.sq-t2-chip').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                };
+                container.appendChild(btn);
+            });
+        }
+        
+        // Initialize state on load
+        togglePracticeMode();
+    </script>
+</body>
+</html>

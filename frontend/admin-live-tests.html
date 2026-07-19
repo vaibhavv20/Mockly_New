@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Live Free Tests | Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --danger: #ef4444;
+            --success: #10b981;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --border-glass: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --glass-bg: rgba(30, 41, 59, 0.95);
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text-main); line-height: 1.6; }
+
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-glass);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 35px; height: 35px; background: var(--primary); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+        .nav-links a { margin-left: 20px; color: var(--text-muted); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a.active { color: var(--primary); }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header-actions h1 { font-size: 2rem; color: var(--text-main); }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .paper-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .paper-table th, .paper-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .paper-table th {
+            background: rgba(0,0,0,0.02);
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .dark .paper-table th { background: rgba(255,255,255,0.02); }
+
+        .paper-table tr:last-child td { border-bottom: none; }
+        .paper-table tbody tr:hover { background: rgba(0,0,0,0.01); }
+        .dark .paper-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .badge-warning { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-edit {
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.1);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-edit:hover { background: var(--primary); color: white; }
+
+        .btn-delete {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-delete:hover { background: var(--danger); color: white; }
+
+        .loading { text-align: center; padding: 40px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="admin.html" class="logo">
+                <div class="logo-icon">M</div>
+                Mockly Admin
+            </a>
+            <div class="nav-links">
+                <a href="admin.html">Dashboard</a>
+                <a href="admin-manage-papers.html">Mock Papers</a>
+                <a href="admin-live-tests.html" class="active">Live Free Tests</a>
+                <button id="themeToggle" style="background:none;border:none;color:var(--text-muted);cursor:pointer;margin-left:20px;">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon" style="display:none;"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-actions">
+            <h1>Manage Live Free Tests</h1>
+            <a href="admin-panel.html" class="btn-primary"><i class="fa-solid fa-plus"></i> Create New Paper</a>
+        </div>
+
+        <table class="paper-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Questions</th>
+                    <th>Status</th>
+                    <th>Live Free</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="papersList">
+                <tr><td colspan="6" class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading papers...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            window.location.href = 'index.html';
+        }
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const darkIcon = document.querySelector('.dark-icon');
+        const lightIcon = document.querySelector('.light-icon');
+        const html = document.documentElement;
+
+        function setTheme(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+                darkIcon.style.display = 'none';
+                lightIcon.style.display = 'block';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                lightIcon.style.display = 'none';
+                darkIcon.style.display = 'block';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        setTheme(localStorage.getItem('theme') === 'dark');
+        if(themeToggle) themeToggle.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
+
+        // Fetch Papers
+        async function fetchPapers() {
+            try {
+                const response = await fetch('http://localhost:5000/api/papers?isLiveNow=true&isFree=true', {
+                    headers: { 'x-auth-token': token }
+                });
+                const data = await response.json();
+                
+                const tbody = document.getElementById('papersList');
+                tbody.innerHTML = '';
+
+                if (!data.success || !data.papers || data.papers.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:30px;">No papers found.</td></tr>';
+                    return;
+                }
+
+                data.papers.forEach(paper => {
+                    const statusBadge = paper.isActive 
+                        ? '<span class="badge badge-success">Active</span>'
+                        : '<span class="badge badge-danger">Inactive</span>';
+                    
+                    const freeBadge = (paper.isFree && paper.isLiveNow)
+                        ? '<span class="badge badge-success"><i class="fa-solid fa-fire"></i> Live Free</span>'
+                        : '<span class="badge badge-warning">Standard</span>';
+
+                    // Count total questions from sections
+                    let totalQs = 0;
+                    if(paper.sections && paper.sections.length > 0) {
+                        paper.sections.forEach(sec => totalQs += (sec.questions ? sec.questions.length : 0));
+                    }
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td style="font-weight:600;">${paper.title}</td>
+                        <td>${paper.category} ${paper.examName ? `(${paper.examName})` : ''}</td>
+                        <td>${totalQs} Qs</td>
+                        <td>${statusBadge}</td>
+                        <td>${freeBadge}</td>
+                        <td class="action-btns">
+                            <a href="admin-panel.html?edit=${paper._id}" class="btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                            <button onclick="togglePaperStatus('${paper._id}', ${paper.isActive})" class="btn-delete">
+                                ${paper.isActive ? '<i class="fa-solid fa-eye-slash"></i> Hide' : '<i class="fa-solid fa-eye"></i> Show'}
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error(err);
+                document.getElementById('papersList').innerHTML = `<tr><td colspan="6" style="text-align:center;color:red;">Error loading papers: ${err.message}</td></tr>`;
+            }
+        }
+
+        async function togglePaperStatus(id, currentStatus) {
+            if(!confirm(`Are you sure you want to ${currentStatus ? 'hide' : 'show'} this paper?`)) return;
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/papers/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': token
+                    },
+                    body: JSON.stringify({ isActive: !currentStatus })
+                });
+                const data = await response.json();
+                if(data.success) {
+                    fetchPapers();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            } catch(err) {
+                alert('Request failed');
+            }
+        }
+
+        window.onload = fetchPapers;
+    </script>
+</body>
+</html>

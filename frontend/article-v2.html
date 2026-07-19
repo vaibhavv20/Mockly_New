@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Dive | Mockly Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/premium-v2.css">
+</head>
+<body class="v2-dark">
+
+    <div class="v2-container" style="padding-top: 40px; padding-bottom: 0;">
+        <!-- Nexus Top Nav -->
+        <nav class="nexus-nav" style="margin-bottom: 0;">
+            <div class="nexus-logo">MOCKLY</div>
+            <div class="nexus-categories">
+                <div class="nexus-pill" onclick="window.location.href='current-affairs-v2.html'"><i class="fa-solid fa-arrow-left"></i> Back to Feed</div>
+            </div>
+            <div style="margin-left: auto; color: var(--text-secondary); cursor: pointer;" onclick="toggleBookmark()">
+                <i class="fa-regular fa-bookmark"></i>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div style="position: fixed; top: 62px; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.05); z-index: 999;">
+        <div id="v2-progress" style="height: 100%; background: var(--v2-brand); width: 0%; box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);"></div>
+    </div>
+
+    <!-- Cinematic Hero -->
+    <div class="v2-article-hero" id="v2-hero" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=2000');">
+        <div class="v2-hero-overlay"></div>
+        <div class="v2-hero-content">
+            <div style="margin-bottom: 15px;">
+                <span class="v2-card-tag" id="v2-cat" style="background: var(--v2-brand); color: white;">Category</span>
+                <span style="margin-left: 15px; color: var(--v2-text-muted); font-weight: 500;" id="v2-date"><i class="fa-regular fa-clock"></i> Loading...</span>
+            </div>
+            <h1 class="v2-hero-title" id="v2-title">Loading Article...</h1>
+        </div>
+    </div>
+
+    <!-- Floating Actions Sidebar -->
+    <div class="v2-floating-actions">
+        <button class="v2-action-btn" title="Bookmark" onclick="toggleBookmark()"><i class="fa-regular fa-bookmark"></i></button>
+        <button class="v2-action-btn" title="Share" onclick="shareArticle()"><i class="fa-solid fa-share-nodes"></i></button>
+        <button class="v2-action-btn" title="Download PDF"><i class="fa-solid fa-download"></i></button>
+    </div>
+
+    <!-- Main Content Column -->
+    <main class="v2-reading-container">
+        <!-- TLDR Summary -->
+        <div style="padding: 25px 30px; background: rgba(255,255,255,0.02); border: 1px solid var(--v2-border); border-left: 4px solid var(--v2-brand); border-radius: 12px; margin-bottom: 40px;">
+            <div style="font-family: 'Outfit'; font-weight: 700; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;"><i class="fa-solid fa-bolt" style="color: var(--v2-brand);"></i> Executive Summary</div>
+            <div id="v2-summary" style="color: var(--v2-text-muted); font-size: 1.1rem; line-height: 1.6;"></div>
+        </div>
+
+        <!-- Article Body -->
+        <div class="v2-article-body" id="v2-content">
+            <!-- Injected content goes here -->
+        </div>
+
+        <!-- Gamification CTA -->
+        <div id="v2-quiz-cta" style="display: none; text-align: center; margin: 60px 0; border-top: 1px solid var(--v2-border); padding-top: 40px;">
+            <button style="background: var(--v2-brand); color: white; border: none; padding: 18px 40px; border-radius: 30px; font-family: 'Outfit'; font-weight: 600; font-size: 1.2rem; cursor: pointer; box-shadow: 0 10px 30px var(--v2-brand-glow); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="document.getElementById('v2-quiz-section').scrollIntoView({behavior: 'smooth'})">
+                <i class="fa-solid fa-brain"></i> Test Your Knowledge
+            </button>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="v2-quiz-section" style="margin-top: 50px; padding: 40px; background: var(--v2-surface-elevated); border: 1px solid var(--v2-border); border-radius: 20px; display: none;">
+            <h2 style="font-family: 'Outfit'; margin-top: 0; color: #fff;"><i class="fa-solid fa-list-check" style="color: var(--v2-brand);"></i> Interactive Quiz</h2>
+            <div id="v2-quiz-container"></div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        let currentArticle = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('slug');
+            if(slug) fetchV2Article(slug);
+        });
+
+        // Reading Progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('v2-progress').style.width = scrolled + '%';
+        });
+
+        async function fetchV2Article(slug) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/current-affairs/slug/${slug}`);
+                if (!response.ok) throw new Error('Not found');
+                const result = await response.json();
+                currentArticle = result.data || result;
+                
+                if(!currentArticle) {
+                    document.getElementById('v2-title').innerText = "Article Not Found";
+                    return;
+                }
+
+                // Render Hero
+                if(currentArticle.image) {
+                    document.getElementById('v2-hero').style.backgroundImage = `url('${currentArticle.image}')`;
+                }
+                const parseMd = (window.marked && window.marked.parseInline) ? window.marked.parseInline : (t) => t;
+                const parseMdFull = (window.marked && window.marked.parse) ? window.marked.parse : (t) => t;
+
+                document.getElementById('v2-cat').innerText = currentArticle.category || 'General';
+                document.getElementById('v2-date').innerHTML = `<i class="fa-regular fa-clock"></i> ${new Date(currentArticle.date || Date.now()).toLocaleDateString()}`;
+                document.getElementById('v2-title').innerHTML = parseMd(currentArticle.title);
+                
+                // Render Body
+                document.getElementById('v2-summary').innerHTML = parseMd(currentArticle.summary || '');
+                document.getElementById('v2-content').innerHTML = parseMdFull(currentArticle.content || '');
+
+                // Render Quiz if available
+                if (currentArticle.mcqs && currentArticle.mcqs.length > 0) {
+                    document.getElementById('v2-quiz-cta').style.display = 'block';
+                    document.getElementById('v2-quiz-section').style.display = 'block';
+                    renderV2Quiz(currentArticle.mcqs);
+                }
+
+                // Update History
+                let history = JSON.parse(localStorage.getItem('ag_history') || '[]');
+                history = history.filter(a => a.slug !== slug);
+                history.unshift(currentArticle);
+                if(history.length > 20) history.pop();
+                localStorage.setItem('ag_history', JSON.stringify(history));
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderV2Quiz(mcqs) {
+            const parseMd = (window.marked && window.marked.parseInline) ? window.marked.parseInline : (t) => t;
+            let html = '';
+            mcqs.forEach((mcq, qIdx) => {
+                html += `
+                <div style="margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--v2-border);">
+                    <p style="font-size: 1.1rem; color: #fff; margin-bottom: 20px; line-height: 1.5;"><strong>Q${qIdx+1}.</strong> ${parseMd(mcq.question)}</p>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        ${(mcq.options || []).map((opt, oIdx) => `
+                            <div style="padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--v2-border); border-radius: 8px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'" onclick="alert('Option ${String.fromCharCode(65+oIdx)} selected! (Logic to be linked)')">
+                                <span style="display: inline-block; width: 30px; height: 30px; background: rgba(255,255,255,0.1); text-align: center; line-height: 30px; border-radius: 4px; margin-right: 15px;">${String.fromCharCode(65+oIdx)}</span>
+                                ${parseMd(opt.text)}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                `;
+            });
+            document.getElementById('v2-quiz-container').innerHTML = html;
+        }
+
+        function toggleBookmark() {
+            if(!currentArticle) return;
+            let bookmarks = JSON.parse(localStorage.getItem('ag_bookmarks') || '[]');
+            const exists = bookmarks.find(b => b.slug === currentArticle.slug);
+            if(exists) {
+                bookmarks = bookmarks.filter(b => b.slug !== currentArticle.slug);
+                alert('Removed from bookmarks');
+            } else {
+                bookmarks.push(currentArticle);
+                alert('Added to bookmarks!');
+            }
+            localStorage.setItem('ag_bookmarks', JSON.stringify(bookmarks));
+        }
+
+        function shareArticle() {
+            if(navigator.share) {
+                navigator.share({
+                    title: currentArticle.title,
+                    url: window.location.href
+                });
+            } else {
+                alert('Share API not supported on this browser.');
+            }
+        }
+    </script>
+</body>
+</html>

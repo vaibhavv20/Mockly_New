@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockly | Premium Test Series for SSC, Banking, RRB & NTA</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/bento.css">
+</head>
+<body>
+
+
+    <!-- Auth Modal Overlay -->
+    <div id="auth-modal" class="auth-overlay" style="display: none;">
+        <button id="close-auth" class="auth-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="auth-container">
+            <!-- Left Panel: Branding & USP -->
+            <div class="auth-branding">
+                <a href="#" class="auth-logo">
+                    <div class="logo-mark">M</div>
+                    <span class="brand-text">Mockly</span>
+                </a>
+                
+                <div class="auth-hero-text">
+                    <h1>Claim Your <br><span class="text-gradient">Unfair Advantage</span></h1>
+                    <p>Join 10,000+ serious candidates who train on the exact TCS iON exam interface.</p>
+                </div>
+                
+                <div class="auth-graphic">
+                    <div class="glowing-rings">
+                        <div class="ring r1"></div>
+                        <div class="ring r2"></div>
+                    </div>
+                    <i class="fa-solid fa-shield-halved giant-shield"></i>
+                </div>
+
+                <div class="auth-stats-row">
+                    <div class="auth-stat-item">
+                        <span class="auth-stat-num">10K+</span>
+                        <span class="auth-stat-label">Active Users</span>
+                    </div>
+                    <div class="auth-stat-item">
+                        <span class="auth-stat-num">500+</span>
+                        <span class="auth-stat-label">Mock Tests</span>
+                    </div>
+                    <div class="auth-stat-item">
+                        <span class="auth-stat-num">95%</span>
+                        <span class="auth-stat-label">Success Rate</span>
+                    </div>
+                </div>
+                
+                <div class="auth-testimonial">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Mockly's AI analytics found weaknesses I didn't even know I had. Improved my score by 35% in one month."</p>
+                    <div class="t-author">— Rohan S., SSC CGL Topper</div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Authentication Forms -->
+            <div class="auth-form-wrapper">
+                <div class="auth-card glass-card">
+                    
+                    <!-- Login View -->
+                    <div class="auth-view active" id="login-view">
+                        <div class="auth-header">
+                            <div class="auth-header-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+                            <h2>Welcome Back</h2>
+                            <p>Sign in to continue your preparation journey.</p>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button class="social-btn"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Continue with Google</button>
+                        </div>
+                        
+                        <div class="divider">
+                            <span>or sign in with email</span>
+                        </div>
+                        
+                        <form id="login-form">
+                            <div class="input-group">
+                                <input type="email" id="login-email" required placeholder=" ">
+                                <label for="login-email">Email Address</label>
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="login-password" required placeholder=" ">
+                                <label for="login-password">Password</label>
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <button type="button" class="password-toggle"><i class="fa-regular fa-eye"></i></button>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <label class="remember-me">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Remember me
+                                </label>
+                                <a href="#" class="forgot-link">Forgot password?</a>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-100 btn-submit pulse-animation">Sign In <i class="fa-solid fa-arrow-right"></i></button>
+                        </form>
+                        
+                        <div class="auth-footer">
+                            Don't have an account? <a href="#" id="go-to-signup" class="text-gradient">Create one now</a>
+                        </div>
+                    </div>
+
+                    <!-- Admin OTP View -->
+                    <div class="auth-view" id="admin-otp-view" style="display: none;">
+                        <div class="auth-header">
+                            <h2>Admin Verification</h2>
+                            <p>Please enter the 6-digit OTP sent to your admin email.</p>
+                        </div>
+                        
+                        <form id="admin-otp-form">
+                            <input type="hidden" id="admin-otp-email">
+                            <div class="input-group">
+                                <input type="text" id="admin-otp-input" required placeholder=" " maxlength="6">
+                                <label for="admin-otp-input">Enter OTP</label>
+                                <i class="fa-solid fa-key input-icon"></i>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-100 btn-submit pulse-animation">Verify & Login</button>
+                        </form>
+                    </div>
+
+                    <!-- Sign Up View -->
+                    <div class="auth-view" id="signup-view" style="display: none;">
+                        <div class="auth-header">
+                            <div class="auth-header-icon signup-icon"><i class="fa-solid fa-user-plus"></i></div>
+                            <h2>Create Account</h2>
+                            <p>Start your journey to selection today.</p>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button class="social-btn"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Sign up with Google</button>
+                        </div>
+                        
+                        <div class="divider">
+                            <span>or register with email</span>
+                        </div>
+                        
+                        <form id="signup-form">
+                            <div class="avatar-selection">
+                                <label>Choose your Avatar</label>
+                                <div class="avatar-options">
+                                    <img src="assets/avatars/memoji_1.webp" class="avatar-option selected" data-avatar="1">
+                                    <img src="assets/avatars/memoji_2.webp" class="avatar-option" data-avatar="2">
+                                    <img src="assets/avatars/memoji_3.webp" class="avatar-option" data-avatar="3">
+                                    <img src="assets/avatars/memoji_6.webp" class="avatar-option" data-avatar="6">
+                                    <img src="assets/avatars/memoji_7.webp" class="avatar-option" data-avatar="7">
+                                    <img src="assets/avatars/memoji_9.webp" class="avatar-option" data-avatar="9">
+                                    <img src="assets/avatars/memoji_10.webp" class="avatar-option" data-avatar="10">
+                                    <img src="assets/avatars/memoji_11.webp" class="avatar-option" data-avatar="11">
+                                </div>
+                                <input type="hidden" id="selected-avatar" value="1">
+                            </div>
+                            <div class="name-row">
+                                <div class="input-group">
+                                    <input type="text" id="signup-fname" required placeholder=" ">
+                                    <label for="signup-fname">First Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" id="signup-lname" required placeholder=" ">
+                                    <label for="signup-lname">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="signup-email" required placeholder=" ">
+                                <label for="signup-email">Email Address</label>
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                            </div>
+                            <div class="input-group">
+                                <input type="tel" id="signup-mobile" required placeholder=" ">
+                                <label for="signup-mobile">Mobile Number</label>
+                                <i class="fa-solid fa-phone input-icon"></i>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="signup-password" required placeholder=" ">
+                                <label for="signup-password">Create Password</label>
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <button type="button" class="password-toggle"><i class="fa-regular fa-eye"></i></button>
+                            </div>
+                            
+                            <div class="password-strength">
+                                <div class="strength-bar"><div class="fill" style="width: 30%; background: #ef4444;"></div></div>
+                                <span class="strength-text">Use 8+ characters with a mix of letters, numbers & symbols</span>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-100 btn-submit pulse-animation" style="margin-top: 15px;">Create Free Account <i class="fa-solid fa-arrow-right"></i></button>
+                            <p class="terms-text">By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+                        </form>
+                        
+                        <div class="auth-footer">
+                            Already have an account? <a href="#" id="go-to-login" class="text-gradient">Sign in instead</a>
+                        </div>
+                    </div>
+                    
+                    <!-- OTP Verification View -->
+                    <div class="auth-view" id="otp-view" style="display: none;">
+                        <div class="auth-header">
+                            <h2>Verify Email</h2>
+                            <p>We've sent a 6-digit code to your email.</p>
+                        </div>
+                        <form id="otp-form">
+                            <div class="input-group">
+                                <input type="text" id="otp-input" required placeholder=" " maxlength="6" pattern="\d{6}">
+                                <label for="otp-input">Enter 6-Digit OTP</label>
+                                <i class="fa-solid fa-key input-icon"></i>
+                            </div>
+                            <button type="submit" class="btn-primary btn-submit pulse-animation" style="margin: 15px auto 0 auto; width: 70%; display: block;">Verify & Login</button>
+                        </form>
+                        <div class="auth-footer">
+                            <a href="#" id="back-to-signup" class="text-gradient"><i class="fa-solid fa-arrow-left"></i> Back to Sign Up</a>
+                        </div>
+                    </div>
+
+                    <!-- Forgot Password View -->
+                    <div class="auth-view" id="forgot-password-view" style="display: none;">
+                        <div class="auth-header">
+                            <h2>Forgot Password?</h2>
+                            <p>Enter your email to receive a password reset OTP.</p>
+                        </div>
+                        <form id="forgot-password-form">
+                            <div class="input-group">
+                                <input type="email" id="forgot-email" required placeholder=" ">
+                                <label for="forgot-email">Email Address</label>
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                            </div>
+                            <button type="submit" class="btn-primary btn-submit pulse-animation" style="margin: 15px auto 0 auto; width: 70%; display: block;">Send Reset OTP</button>
+                        </form>
+                        <div class="auth-footer">
+                            Remember your password? <a href="#" id="back-to-login" class="text-gradient">Sign in</a>
+                        </div>
+                    </div>
+
+                    <!-- Reset Password View -->
+                    <div class="auth-view" id="reset-password-view" style="display: none;">
+                        <div class="auth-header">
+                            <h2>Reset Password</h2>
+                            <p>Enter the OTP sent to your email and your new password.</p>
+                        </div>
+                        <form id="reset-password-form">
+                            <div class="input-group">
+                                <input type="text" id="reset-otp" required placeholder=" " maxlength="6" pattern="\d{6}">
+                                <label for="reset-otp">Enter 6-Digit OTP</label>
+                                <i class="fa-solid fa-key input-icon"></i>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="reset-new-password" required placeholder=" ">
+                                <label for="reset-new-password">New Password</label>
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <button type="button" class="password-toggle"><i class="fa-regular fa-eye"></i></button>
+                            </div>
+                            <button type="submit" class="btn-primary btn-submit pulse-animation" style="margin: 15px auto 0 auto; width: 70%; display: block;">Reset Password</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Ambient Glows -->
+    <div class="ambient-bg">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <div class="nav-links">
+                <a href="exams.html" class="nav-item">Exams</a>
+                <a href="test-details.html" class="nav-item text-purple" style="font-weight: 600;"><i class="fa-solid fa-bolt"></i> Test Series</a>
+                <a href="live-tests.html" class="nav-item"><span class="pulse-dot-small text-red"></span> Live Tests</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon" style="display:none;"></i>
+                </button>
+                <button class="btn-ghost" id="nav-login-btn">Login</button>
+                <button class="btn-primary" id="nav-signup-btn">Sign Up Free</button>
+                
+                <div id="user-menu" style="display: none; align-items: center; gap: 15px;">
+                    <a href="dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;" title="Go to Dashboard">
+                        <img src="assets/avatars/memoji_1.webp" id="nav-avatar" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--primary-color);">
+                        <span id="user-greeting" style="font-weight: 500;"></span>
+                    </a>
+                    <button class="btn-ghost" id="nav-logout-btn" style="border: 1px solid var(--border-glass);">Logout</button>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Mobile Nav Drawer -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <div class="drawer-header">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <button class="close-drawer-btn" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="exams.html" class="drawer-item" style="--anim-order: 1;"><div class="d-icon-box"><i class="fa-solid fa-layer-group"></i></div> Exams</a>
+            <a href="test-details.html" class="drawer-item" style="--anim-order: 2;"><div class="d-icon-box text-purple"><i class="fa-solid fa-bolt"></i></div> Test Series</a>
+            <a href="live-tests.html" class="drawer-item" style="--anim-order: 3;"><div class="d-icon-box text-red"><i class="fa-solid fa-tower-broadcast"></i></div> Live Tests</a>
+        </div>
+        <div class="drawer-actions">
+            <button class="btn-ghost w-100 mb-2 drawer-login-btn">Login</button>
+            <button class="btn-primary w-100 drawer-signup-btn premium-cta">Sign Up Free</button>
+        </div>
+        <div class="drawer-socials">
+            <a href="#" class="d-social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="d-social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="hero reveal-on-scroll">
+            <div class="hero-content">
+                <div class="trust-badge glass-card hover-glow">
+                    <div class="avatar-group">
+                        <img src="assets/avatars/memoji_1.webp" alt="Student 1" class="avatar" id="avatar-1">
+                        <img src="assets/avatars/memoji_2.webp" alt="Student 2" class="avatar" id="avatar-2">
+                        <img src="assets/avatars/memoji_3.webp" alt="Student 3" class="avatar" id="avatar-3">
+                    </div>
+                    <span class="pulse-dot-small bg-green"></span>
+                    <span>Trusted by <strong>800k+</strong> Aspirants</span>
+                </div>
+                <h1 class="hero-title">
+                    Crack Your Dream Job with <br/>
+                    <span class="text-gradient-animated">India's Smartest Test Series.</span>
+                </h1>
+                <p class="hero-subtitle" style="margin-bottom: 30px;">
+                    Don't just practice; practice right. Experience the exact TCS iON interface, pinpoint your weaknesses with AI analytics, and conquer your exams.
+                </p>
+                
+                <!-- Trust Stats -->
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <h3 class="text-gradient"><span class="counter" data-target="2.5" data-suffix="M+">0</span></h3>
+                        <p class="text-muted text-sm">Questions Attempted</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h3 class="text-gradient"><span class="counter" data-target="15000" data-suffix="+">0</span></h3>
+                        <p class="text-muted text-sm">Verified Selections</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stars text-yellow">
+                            <i class="fa-solid fa-star animate-star"></i><i class="fa-solid fa-star animate-star"></i><i class="fa-solid fa-star animate-star"></i><i class="fa-solid fa-star animate-star"></i><i class="fa-solid fa-star-half-stroke animate-star"></i>
+                        </div>
+                        <p class="text-muted text-sm">4.9/5 Rating</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Search Panel -->
+            <div class="hero-search-panel glass-card hover-scale">
+                
+                <div style="position: absolute; top: -30px; right: -30px; width: 150px; height: 150px; background: rgba(138, 43, 226, 0.15); filter: blur(50px); border-radius: 50%; z-index: -1;"></div>
+                <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: rgba(59, 130, 246, 0.15); filter: blur(50px); border-radius: 50%; z-index: -1;"></div>
+
+                <h3 class="hero-search-panel-title">Find your mock test</h3>
+
+                <!-- Exam Category Tabs -->
+                <div class="exam-category-tabs" id="hero-category-tabs">
+                    <button class="tab-btn active" data-category="all">All Exams</button>
+                    <button class="tab-btn" data-category="ssc">SSC</button>
+                    <button class="tab-btn" data-category="banking">Banking</button>
+                    <button class="tab-btn" data-category="railways">Railways</button>
+                    <button class="tab-btn" data-category="teaching">Teaching</button>
+                </div>
+
+                <!-- Immediate Search CTA -->
+                <div class="hero-search glass-search">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon text-muted"></i>
+                        <input type="text" id="hero-search-input" placeholder="Search for SSC CGL, SBI PO..." class="hero-search-input">
+                    </div>
+                    <button id="hero-search-btn" class="btn-primary search-btn glow-hover">Search</button>
+                </div>
+                
+                <div class="trending-tags">
+                    <span class="text-muted text-sm"><i class="fa-solid fa-fire text-red" style="margin-right: 4px;"></i> Trending:</span>
+                    <a href="ssc-cgl.html" class="tag">SSC CGL Tier 1</a>
+                    <a href="#bank" class="tag">SBI PO Prelims</a>
+                    <a href="#rrb" class="tag">RRB ALP</a>
+                </div>
+            </div>
+            
+            <!-- Hero Visual (Interactive 3D Element) -->
+        </section>
+
+
+        <!-- 1.5 Infinite Logo Marquee -->
+        <section class="logo-marquee-section">
+            <p class="marquee-title">Trusted by aspirants preparing for exams conducted by:</p>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <!-- Set 1 -->
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-building-columns text-primary"></i><span>SSC</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-landmark text-green"></i><span>IBPS</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-train text-yellow"></i><span>RRB</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-chalkboard-user text-purple"></i><span>CTET</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-shield-halved text-red"></i><span>UPSC</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-building-columns" style="color: #3b82f6;"></i><span>SBI</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-laptop-code" style="color: #14b8a6;"></i><span>NTA</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-briefcase" style="color: #f97316;"></i><span>LIC</span></div>
+                    <!-- Set 2 (Duplicate for infinite scroll) -->
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-building-columns text-primary"></i><span>SSC</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-landmark text-green"></i><span>IBPS</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-train text-yellow"></i><span>RRB</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-chalkboard-user text-purple"></i><span>CTET</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-shield-halved text-red"></i><span>UPSC</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-building-columns" style="color: #3b82f6;"></i><span>SBI</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-laptop-code" style="color: #14b8a6;"></i><span>NTA</span></div>
+                    <div class="marquee-logo text-logo" style="display:flex; align-items:center; gap:12px; font-size:1.6rem;"><i class="fa-solid fa-briefcase" style="color: #f97316;"></i><span>LIC</span></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. Free Mocks Section -->
+        <section id="free-mocks" class="free-mocks reveal-on-scroll">
+            <div class="section-header">
+                <h2>Live <span class="text-gradient">Free Mock Tests</span></h2>
+                <p>Experience the exact TCS iON interface. Attempt now for an All-India Rank.</p>
+            </div>
+            
+            <div class="carousel-container">
+                <button id="mockLeftBtn" class="carousel-arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="mock-grid" id="mockGrid">
+                </div>
+                <button id="mockRightBtn" class="carousel-arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+
+        <!-- 3. Exam Categories Grid -->
+        <section id="exams" class="categories-section reveal-on-scroll">
+            <div class="section-header">
+                <h2>Explore Exams by <span class="text-gradient">Category</span></h2>
+                <p>Over 5,000+ mock tests covering 200+ government and entrance exams.</p>
+            </div>
+            
+            <div id="categoryCardsContainer" class="categories-grid">
+                <!-- Categories will be injected here dynamically by api-categories.js -->
+            </div>
+        </section>
+
+
+        <!-- 4. Live & Upcoming Tests Carousel -->
+        <section id="live-tests" class="live-tests-section reveal-on-scroll">
+            <div class="section-header align-left">
+                <h2><span class="pulse-dot-large text-red"></span> Live & Upcoming All-India Mocks</h2>
+                <p>Compete with thousands of aspirants nationwide and check your real rank before the actual exam.</p>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <button class="scroll-btn left-btn d-none d-md-flex" id="scrollLeftBtn"><i class="fa-solid fa-arrow-left"></i></button>
+                <div class="cards-scroll-container" id="liveCardsScroll">
+                <!-- Cards will be dynamically injected here by api-mock.js -->
+            </div>
+            <button class="scroll-btn right-btn d-none d-md-flex" id="scrollRightBtn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="text-center mt-4" style="position: relative; z-index: 20;">
+            <button class="btn-ghost">View All 200+ Exams <i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+    </section>
+
+
+
+        <!-- 5. Deep Dive Features (Why Choose Us) -->
+        <section id="features" class="features-deep-dive reveal-on-scroll">
+            <div class="section-header">
+                <h2>More Than Just a Test. <br/> <span class="text-gradient">It's a Selection Strategy.</span></h2>
+            </div>
+
+            <!-- Feature Block 1: TCS Interface -->
+            <div class="feature-row stacked">
+                <div class="feature-text text-center animated-feature-text">
+                    <div class="icon-bubble bg-blue mx-auto pulse-animation"><i class="fa-solid fa-desktop"></i></div>
+                    <h3 class="animate-gradient-text typing-effect">Exact TCS iON Exam Simulator</h3>
+                    <p>Panic is the enemy of success. We replicate the exact user interface of the real exams (SSC, IBPS, RRB) conducted by TCS iON.</p>
+                    <ul class="check-list horizontal-check">
+                        <li><i class="fa-solid fa-circle-check text-green bounce-icon"></i> Same color palette (Answered, Marked for Review).</li>
+                        <li><i class="fa-solid fa-circle-check text-green bounce-icon"></i> Keyboard shortcuts enabled.</li>
+                        <li><i class="fa-solid fa-circle-check text-green bounce-icon"></i> 1-click Bilingual Toggle without page reload.</li>
+                    </ul>
+                </div>
+                <div class="feature-image-wrapper" style="width: 100%; display: flex; justify-content: center;">
+                    <div class="tcs-mock-ui window-mode real-tcs">
+                        <div class="browser-header">
+                            <div class="window-controls">
+                                <span class="dot red-dot"></span>
+                                <span class="dot yellow-dot"></span>
+                                <span class="dot green-dot"></span>
+                            </div>
+                            <div class="browser-title">TCS iON Candidate Console</div>
+                        </div>
+                        
+                        <!-- Top Navy Header -->
+                        <div class="rt-top-header">
+                            <div class="rt-logo-area">
+                                <div class="rt-logo">SSC<br>CGL</div>
+                                <div class="rt-test-info">
+                                    <div class="rt-test-name">SSC CGL - Mock Test</div>
+                                    <div class="rt-test-sub">SSC CGL Tier-I 2025 Set 1</div>
+                                </div>
+                            </div>
+                            <div class="rt-candidate-info">
+                                <div class="rt-c-name">Candidate Name: <b>Vaibhav</b></div>
+                                <div class="rt-c-session">Session: 3d5980d068183b13 | Subject: General Intelligence & Reasoning</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Section Tabs -->
+                        <div class="rt-tabs-bar">
+                            <div class="rt-tab active">General Intelligence & Reasoning <span class="badge">25</span></div>
+                            <div class="rt-tab">General Awareness <span class="badge">25</span></div>
+                            <div class="rt-tab">Quantitative Aptitude <span class="badge">25</span></div>
+                            <div class="rt-tab">English Comprehension <span class="badge">25</span></div>
+                        </div>
+
+                        <!-- Action Bar -->
+                        <div class="rt-action-bar">
+                            <div class="rt-action-left">
+                                <button class="rt-btn rt-btn-green">SAVE & NEXT</button>
+                                <button class="rt-btn rt-btn-purple">MARK FOR REVIEW</button>
+                                <button class="rt-btn rt-btn-grey">CLEAR RESPONSE</button>
+                                <div class="rt-divider"></div>
+                                <button class="rt-btn rt-btn-blue">PREVIOUS</button>
+                                <button class="rt-btn rt-btn-blue">NEXT</button>
+                            </div>
+                            <div class="rt-action-right">
+                                <div class="rt-zoom">Zoom: <span class="z-btn">A+</span> <span class="z-btn">A-</span> <i class="fa-solid fa-arrows-rotate" style="color: #3b82f6;"></i></div>
+                                <div class="rt-time">Time Left <span class="text-red" style="font-size: 1.1rem; font-weight: 700;">59:58</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Main Content Area -->
+                        <div class="rt-main-content">
+                            <!-- Question Area -->
+                            <div class="rt-question-section">
+                                <div class="rt-q-header">
+                                    <div class="rt-q-num">Question 1 of 100</div>
+                                    <div class="rt-lang-toggle">
+                                        <button class="l-btn active">English</button>
+                                        <button class="l-btn">हिंदी</button>
+                                    </div>
+                                </div>
+                                <div class="rt-q-body">
+                                    <p style="margin-bottom: 8px;">In the following question, select the related word from the given alternatives.</p>
+                                    <p style="margin-bottom: 25px; font-weight: 600;">Watt: Power :: Pascal: ?</p>
+                                    <div class="rt-options">
+                                        <label class="rt-opt"><span class="rt-opt-circle"></span> <b>A.</b> Energy</label>
+                                        <label class="rt-opt"><span class="rt-opt-circle"></span> <b>B.</b> Temperature</label>
+                                        <label class="rt-opt"><span class="rt-opt-circle"></span> <b>C.</b> Pressure</label>
+                                        <label class="rt-opt"><span class="rt-opt-circle"></span> <b>D.</b> Force</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sidebar -->
+                            <div class="rt-sidebar">
+                                <div class="rt-palette-header">QUESTION PALETTE</div>
+                                <div class="rt-legend">
+                                    <div class="leg-row">
+                                        <div class="leg-item"><span class="l-icon i-not-visited">1</span> Not Visited</div>
+                                        <div class="leg-item"><span class="l-icon i-not-answered">1</span> Not Answered</div>
+                                    </div>
+                                    <div class="leg-row">
+                                        <div class="leg-item"><span class="l-icon i-answered">1</span> Answered</div>
+                                        <div class="leg-item"><span class="l-icon i-marked">1</span> Marked for Review</div>
+                                    </div>
+                                    <div class="leg-row w-full">
+                                        <div class="leg-item"><span class="l-icon i-ans-marked">1</span> Answered & Marked</div>
+                                    </div>
+                                </div>
+                                <div class="rt-section-title">GENERAL INTELLIGENCE & REASONING</div>
+                                <div class="rt-grid">
+                                    <div class="g-btn i-not-answered active-q">1</div>
+                                    <div class="g-btn i-not-visited">2</div>
+                                    <div class="g-btn i-not-visited">3</div>
+                                    <div class="g-btn i-not-visited">4</div>
+                                    <div class="g-btn i-not-visited">5</div>
+                                    <div class="g-btn i-not-visited">6</div>
+                                    <div class="g-btn i-not-visited">7</div>
+                                    <div class="g-btn i-not-visited">8</div>
+                                    <div class="g-btn i-not-visited">9</div>
+                                    <div class="g-btn i-not-visited">10</div>
+                                    <div class="g-btn i-not-visited">11</div>
+                                    <div class="g-btn i-not-visited">12</div>
+                                    <div class="g-btn i-not-visited">13</div>
+                                    <div class="g-btn i-not-visited">14</div>
+                                    <div class="g-btn i-not-visited">15</div>
+                                    <div class="g-btn i-not-visited">16</div>
+                                    <div class="g-btn i-not-visited">17</div>
+                                    <div class="g-btn i-not-visited">18</div>
+                                    <div class="g-btn i-not-visited">19</div>
+                                    <div class="g-btn i-not-visited">20</div>
+                                    <div class="g-btn i-not-visited">21</div>
+                                    <div class="g-btn i-not-visited">22</div>
+                                    <div class="g-btn i-not-visited">23</div>
+                                    <div class="g-btn i-not-visited">24</div>
+                                    <div class="g-btn i-not-visited">25</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Footer -->
+                        <div class="rt-footer">
+                            <div class="rt-stats">
+                                <div class="stat"><div class="s-val">0</div><div class="s-lbl">ANSWERED</div></div>
+                                <div class="stat"><div class="s-val">1</div><div class="s-lbl">NOT ANSWERED</div></div>
+                                <div class="stat"><div class="s-val">99</div><div class="s-lbl">NOT VISITED</div></div>
+                                <div class="stat"><div class="s-val">0</div><div class="s-lbl">MARKED</div></div>
+                            </div>
+                            <div class="rt-footer-btns">
+                                <button class="rt-btn-outline">Question Paper</button>
+                                <button class="rt-btn-submit">SUBMIT TEST</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Block 2: AI Analytics -->
+            <div class="feature-row stacked">
+                <div class="feature-text text-center animated-feature-text">
+                    <div class="icon-bubble bg-purple mx-auto pulse-animation"><i class="fa-solid fa-brain"></i></div>
+                    <h3 class="animate-gradient-text typing-effect" style="border-right-color: #8b5cf6; background: linear-gradient(to right, #a855f7, #ec4899, #a855f7); background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text;">AI-Powered Weakness Remediation</h3>
+                    <p>Don't waste time revising what you already know. Our algorithm tracks your mistakes and tells you exactly what to study next.</p>
+                    <ul class="check-list horizontal-check">
+                        <li><i class="fa-solid fa-circle-check text-purple bounce-icon"></i> Topper Time Comparison.</li>
+                        <li><i class="fa-solid fa-circle-check text-purple bounce-icon"></i> Accuracy vs Time spent scatter plots.</li>
+                        <li><i class="fa-solid fa-circle-check text-purple bounce-icon"></i> Auto-generated "Mini-Mocks" from weak topics.</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-image-wrapper" style="width: 100%; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                    
+                    <!-- Window 1: Analytics -->
+                    <div class="ai-analytics-mock window-mode" style="flex: 1; min-width: 350px; max-width: 500px; height: 400px; box-shadow: 0 30px 60px -12px rgba(168, 85, 247, 0.3); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="browser-header">
+                            <div class="window-controls">
+                                <span class="dot red-dot"></span>
+                                <span class="dot yellow-dot"></span>
+                                <span class="dot green-dot"></span>
+                            </div>
+                            <div class="browser-title">Analytics Dashboard</div>
+                        </div>
+                        <div class="analytics-header">
+                            <div class="a-title">Performance Analytics</div>
+                            <div class="a-badge"><i class="fa-solid fa-bolt text-yellow"></i> AI Analyzed</div>
+                        </div>
+                        
+                        <div class="analytics-body">
+                            <div class="analytics-chart" style="padding-bottom: 10px;">
+                                <div class="chart-title">Accuracy vs Time Spent (Quant)</div>
+                                <div class="scatter-plot">
+                                    <span class="y-label">Accuracy %</span>
+                                    <span class="x-label">Time Spent (sec)</span>
+                                    
+                                    <div class="grid-line" style="bottom: 25%"></div>
+                                    <div class="grid-line" style="bottom: 50%"></div>
+                                    <div class="grid-line" style="bottom: 75%"></div>
+                                    
+                                    <div class="zone-topper">Topper Zone</div>
+                                    
+                                    <div class="point point-me" style="left: 70%; bottom: 35%;"><div class="p-tooltip">You: 35%, 80s</div></div>
+                                    <div class="point point-topper" style="left: 25%; bottom: 85%;"><div class="p-tooltip">Topper: 85%, 30s</div></div>
+                                    <div class="point point-avg" style="left: 50%; bottom: 50%;"></div>
+                                    <div class="point point-avg" style="left: 40%; bottom: 60%;"></div>
+                                    <div class="point point-topper" style="left: 20%; bottom: 90%;"></div>
+                                </div>
+                                <div class="chart-legend" style="margin-top: 25px;">
+                                    <span><div class="l-dot l-me"></div> You</span>
+                                    <span><div class="l-dot l-topper"></div> Topper</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Window 2: Mini Mock Generator -->
+                    <div class="ai-analytics-mock window-mode" style="flex: 1; min-width: 350px; max-width: 500px; height: 400px; box-shadow: 0 30px 60px -12px rgba(168, 85, 247, 0.3); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="browser-header">
+                            <div class="window-controls">
+                                <span class="dot red-dot"></span>
+                                <span class="dot yellow-dot"></span>
+                                <span class="dot green-dot"></span>
+                            </div>
+                            <div class="browser-title">Mini-Mock Generator</div>
+                        </div>
+                        
+                        <div class="analytics-body" style="justify-content: center; align-items: center;">
+                            <div class="analytics-insight" style="width: 100%; max-width: 380px;">
+                                <div class="insight-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="insight-content">
+                                    <div class="i-title">Critical Weakness Detected</div>
+                                    <div class="i-desc">You are spending <b>+50s</b> more than toppers on <i>Number System</i> with only 35% accuracy.</div>
+                                    <button class="btn-generate-mock pulse-animation" style="margin-top: 5px;"><i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Generate Mini-Mock</button>
+                                </div>
+                            </div>
+                            
+                            <div class="mock-generation-progress" style="width: 100%; max-width: 380px; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.4); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                <div class="mm-header-text" style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 10px; font-weight: bold;">
+                                    <span>Building Custom Practice Set...</span>
+                                    <span>78%</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-bottom: 15px;">
+                                    <div style="width: 78%; height: 100%; background: linear-gradient(90deg, #a855f7, #ec4899); border-radius: 4px;"></div>
+                                </div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px;">
+                                    <div><i class="fa-solid fa-check text-green" style="margin-right: 8px;"></i> Analyzing weak areas in Quant</div>
+                                    <div><i class="fa-solid fa-check text-green" style="margin-right: 8px;"></i> Selecting 15 high-yield questions</div>
+                                    <div class="mm-loading-text"><i class="fa-solid fa-spinner fa-spin text-purple" style="margin-right: 8px;"></i> Compiling test environment...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Window 3: Topper Time Comparison -->
+                    <div class="ai-analytics-mock window-mode" style="flex: 1; min-width: 350px; max-width: 500px; height: 400px; box-shadow: 0 30px 60px -12px rgba(168, 85, 247, 0.3); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="browser-header">
+                            <div class="window-controls">
+                                <span class="dot red-dot"></span>
+                                <span class="dot yellow-dot"></span>
+                                <span class="dot green-dot"></span>
+                            </div>
+                            <div class="browser-title">Time Analysis</div>
+                        </div>
+                        
+                        <div class="analytics-body" style="padding: 20px;">
+                            <div class="time-analysis-title" style="font-size: 0.85rem; font-weight: 600; color: #d8b4fe; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Topper vs You: Time per Topic</div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 20px;">
+                                <!-- Item 1 -->
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 8px;">
+                                        <span class="topic-name" style="color: #e2e8f0; font-weight: 600;">Number System</span>
+                                        <span class="text-red font-bold">+45s extra</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                                        <div class="ta-label" style="font-size: 0.65rem; color: #94a3b8; width: 45px;">You</div>
+                                        <div style="height: 8px; background: #ef4444; border-radius: 4px; width: 85%;"></div>
+                                        <div class="ta-val" style="font-size: 0.65rem; color: white;">80s</div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="ta-label" style="font-size: 0.65rem; color: #94a3b8; width: 45px;">Topper</div>
+                                        <div style="height: 8px; background: #10b981; border-radius: 4px; width: 35%;"></div>
+                                        <div class="ta-val" style="font-size: 0.65rem; color: white;">35s</div>
+                                    </div>
+                                </div>
+                                <!-- Item 2 -->
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 8px;">
+                                        <span class="topic-name" style="color: #e2e8f0; font-weight: 600;">Trigonometry</span>
+                                        <span class="text-green font-bold">-10s faster</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                                        <div class="ta-label" style="font-size: 0.65rem; color: #94a3b8; width: 45px;">You</div>
+                                        <div style="height: 8px; background: #10b981; border-radius: 4px; width: 40%;"></div>
+                                        <div class="ta-val" style="font-size: 0.65rem; color: white;">40s</div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="ta-label" style="font-size: 0.65rem; color: #94a3b8; width: 45px;">Topper</div>
+                                        <div style="height: 8px; background: #ef4444; border-radius: 4px; width: 50%;"></div>
+                                        <div class="ta-val" style="font-size: 0.65rem; color: white;">50s</div>
+                                    </div>
+                                </div>
+                                <!-- Item 3 -->
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 8px;">
+                                        <span class="topic-name" style="color: #e2e8f0; font-weight: 600;">Data Interpretation</span>
+                                        <span class="text-red font-bold">+60s extra</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                                        <div class="ta-label" style="font-size: 0.65rem; color: #94a3b8; width: 45px;">You</div>
+                                        <div style="height: 8px; background: #ef4444; border-radius: 4px; width: 95%;"></div>
+                                        <div class="ta-val" style="font-size: 0.65rem; color: white;">120s</div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="ta-label" style="font-size: 0.65rem; color: #94a3b8; width: 45px;">Topper</div>
+                                        <div style="height: 8px; background: #10b981; border-radius: 4px; width: 45%;"></div>
+                                        <div class="ta-val" style="font-size: 0.65rem; color: white;">60s</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Selection Strategy Section -->
+        <section id="selection-strategy" class="selection-strategy-section reveal-on-scroll" style="margin: 100px auto; max-width: 1200px; padding: 0 20px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="selection-title" style="font-size: 3.5rem; font-weight: 800; line-height: 1.2;">More Than Just a Test. <br><span class="text-gradient">It's a Selection Strategy.</span></h2>
+                <p class="selection-desc" style="font-size: 1.2rem; color: var(--text-muted); margin-top: 15px;">Build a winning routine with daily bite-sized tasks that compound into massive results.</p>
+            </div>
+            
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: stretch;">
+                <!-- Left: Daily Tasks -->
+                <div style="flex: 2; display: flex; flex-direction: column; gap: 20px; min-width: 350px;">
+
+
+                    <!-- Task 2: Quiz -->
+                    <div class="strategy-card glass-card" style="display: flex; align-items: center; justify-content: space-between; padding: 25px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div class="sc-icon" style="width: 60px; height: 60px; border-radius: 16px; background: rgba(245, 158, 11, 0.15); color: #f59e0b; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.1);">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h3 class="sc-title" style="font-size: 1.3rem; margin-bottom: 5px;">Daily 10-Min Quiz</h3>
+                                <p class="sc-desc" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0;">Test your speed and accuracy on random high-yield topics.</p>
+                            </div>
+                        </div>
+                        <button class="btn-primary pulse-animation" style="padding: 10px 20px; background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); min-width: 130px;"><i class="fa-solid fa-play"></i> Start Quiz</button>
+                    </div>
+
+                    <!-- Task 3: Vocab -->
+                    <div class="strategy-card glass-card" style="display: flex; align-items: center; justify-content: space-between; padding: 25px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div class="sc-icon" style="width: 60px; height: 60px; border-radius: 16px; background: rgba(168, 85, 247, 0.15); color: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.1);">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <div>
+                                <h3 class="sc-title" style="font-size: 1.3rem; margin-bottom: 5px;">Vocab Booster</h3>
+                                <p class="sc-desc" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0;">Master 5 new advanced English words with usage examples.</p>
+                            </div>
+                        </div>
+                        <button class="btn-glass sc-btn" style="padding: 10px 20px; border-color: rgba(168, 85, 247, 0.3); color: #a855f7; min-width: 130px;"><i class="fa-solid fa-eye"></i> Review</button>
+                    </div>
+                </div>
+
+                <!-- Right: Gamification Streak -->
+                <div class="streak-widget glass-card" style="flex: 1; min-width: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; position: relative; overflow: hidden; background: linear-gradient(180deg, rgba(30, 40, 60, 0.8), rgba(15, 20, 35, 0.9));">
+                    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%); border-radius: 50%;"></div>
+                    
+                    <div class="streak-flame" style="font-size: 6rem; color: #f97316; margin-bottom: 20px; filter: drop-shadow(0 0 30px rgba(249, 115, 22, 0.6)); animation: pulse-glow 2s infinite alternate;">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    
+                    <h3 class="sw-title" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px; color: #fff;">7 Days!</h3>
+                    <p class="sw-desc" style="color: #fb923c; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px;">Current Streak</p>
+                    
+                    <div style="display: flex; gap: 8px; justify-content: center;">
+                        <div class="streak-day active" style="width: 35px; height: 35px; border-radius: 50%; background: #f97316; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);">M</div>
+                        <div class="streak-day active" style="width: 35px; height: 35px; border-radius: 50%; background: #f97316; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);">T</div>
+                        <div class="streak-day active" style="width: 35px; height: 35px; border-radius: 50%; background: #f97316; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);">W</div>
+                        <div class="streak-day active" style="width: 35px; height: 35px; border-radius: 50%; background: #f97316; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);">T</div>
+                        <div class="streak-day inactive" style="width: 35px; height: 35px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: bold; font-size: 0.8rem;">F</div>
+                        <div class="streak-day inactive" style="width: 35px; height: 35px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: bold; font-size: 0.8rem;">S</div>
+                        <div class="streak-day inactive" style="width: 35px; height: 35px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: bold; font-size: 0.8rem;">S</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. USP Section -->
+        <section id="usp-section" class="usp-section reveal-on-scroll">
+            <div class="glass-card usp-banner" style="position: relative; overflow: hidden; display: flex; margin: 100px auto; padding: 0; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(30, 40, 60, 0.5)); border: 1px solid rgba(168, 85, 247, 0.3); box-shadow: 0 0 50px rgba(168, 85, 247, 0.15);">
+                
+                <!-- Decorative background elements -->
+                <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%); border-radius: 50%;"></div>
+                <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+
+                <div class="usp-content" style="padding: 5rem; flex: 1.2; z-index: 1;">
+                    <div class="usp-badge" style="display: inline-block; padding: 6px 16px; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 20px; color: #d8b4fe; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 20px; text-transform: uppercase;">The Ultimate Secret Weapon</div>
+                    <h2 style="font-size: 3.2rem; margin-bottom: 1.5rem; line-height: 1.2; font-weight: 800;">The Mockly <span class="text-gradient">Unfair Advantage</span></h2>
+                    <p class="usp-desc" style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 600px;">
+                        Stop taking generic mock tests. Train on the <b>exact TCS iON exam interface</b> and let our <b>AI algorithms eliminate your critical weaknesses</b> before exam day.
+                    </p>
+                    
+                    <div class="usp-features" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 3rem;">
+                        <div class="usp-feat" style="display: flex; align-items: center; gap: 15px; font-size: 1.1rem; font-weight: 500;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;"><i class="fa-solid fa-check"></i></div>
+                            100% Authentic Exam Interface Simulation
+                        </div>
+                        <div class="usp-feat" style="display: flex; align-items: center; gap: 15px; font-size: 1.1rem; font-weight: 500;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(168, 85, 247, 0.2); color: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;"><i class="fa-solid fa-brain"></i></div>
+                            Instant Weakness Detection Analytics
+                        </div>
+                        <div class="usp-feat" style="display: flex; align-items: center; gap: 15px; font-size: 1.1rem; font-weight: 500;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(236, 72, 153, 0.2); color: #ec4899; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            Adaptive Mini-Mocks for Remediation
+                        </div>
+                    </div>
+
+                    <button class="btn-primary pulse-animation" style="font-size: 1.2rem; padding: 15px 35px; box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);"><i class="fa-solid fa-rocket"></i> Claim Your Unfair Advantage</button>
+                </div>
+                
+                <div class="usp-graphic" style="flex: 0.8; background: rgba(0,0,0,0.2); border-left: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                    <!-- Animated concentric circles -->
+                    <div style="position: absolute; width: 400px; height: 400px; border-radius: 50%; border: 2px dashed rgba(168, 85, 247, 0.2); animation: spin 30s linear infinite;"></div>
+                    <div style="position: absolute; width: 300px; height: 300px; border-radius: 50%; border: 2px dashed rgba(236, 72, 153, 0.2); animation: spin 20s linear infinite reverse;"></div>
+                    <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%); animation: pulse-glow 3s infinite;"></div>
+                    
+                    <i class="fa-solid fa-shield-halved giant-icon" style="color: #fff; font-size: 8rem; text-shadow: 0 0 40px rgba(168, 85, 247, 0.8); z-index: 2; transform: none; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; color: transparent;"></i>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. Testimonials (Trust Building) -->
+        <section class="testimonials-section reveal-on-scroll">
+            <div class="section-header">
+                <h2>Hear From Our <span class="text-gradient">Toppers</span></h2>
+                <p>Real stories from students who trusted Mockly and cracked their exams.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass-card hover-glow">
+                    <div class="user-info">
+                        <div class="avatar bg-blue">A</div>
+                        <div>
+                            <h4>Amit Sharma</h4>
+                            <span class="tag bg-green">AIR 142 - SSC CGL 2025</span>
+                        </div>
+                    </div>
+                    <p class="quote">"The TCS iON exact interface helped me kill my exam fear. The AI analysis pointed out I was spending too much time on tricky quant questions. That saved me 10 minutes in the real exam."</p>
+                </div>
+                <div class="testimonial-card glass-card hover-glow">
+                    <div class="user-info">
+                        <div class="avatar bg-purple">P</div>
+                        <div>
+                            <h4>Priya Reddy</h4>
+                            <span class="tag bg-green">SBI PO Selected</span>
+                        </div>
+                    </div>
+                    <p class="quote">"Mockly's puzzle and seating arrangement questions match the exact difficulty of IBPS/SBI Mains. The topper time comparison was an eye-opener."</p>
+                </div>
+                <div class="testimonial-card glass-card hover-glow">
+                    <div class="user-info">
+                        <div class="avatar bg-orange">R</div>
+                        <div>
+                            <h4>Rahul Verma</h4>
+                            <span class="tag bg-green">RRB NTPC Station Master</span>
+                        </div>
+                    </div>
+                    <p class="quote">"The live weekend mocks are the best. Competing with 50,000 students every Sunday gave me the exact reality check I needed."</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 8. Pricing / Pass Section -->
+        <section id="pricing" class="pricing-section reveal-on-scroll">
+            <div class="section-header">
+                <h2>Unlock Everything with <span class="text-gradient">Mockly Pass PRO</span></h2>
+                <p>One pass. Unlimited access to all exams, previous year papers, and premium features.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card glass-card">
+                    <h3>Basic Free</h3>
+                    <div class="price">₹0<span>/forever</span></div>
+                    <p class="price-desc">Perfect to test the waters.</p>
+                    <ul class="plan-features">
+                        <li><i class="fa-solid fa-check text-green"></i> 1 Free Mock per Exam</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Basic Analysis</li>
+                        <li><i class="fa-solid fa-xmark text-muted"></i> No Previous Year Papers</li>
+                        <li><i class="fa-solid fa-xmark text-muted"></i> No AI Remediation</li>
+                    </ul>
+                    <button class="btn-glass w-100 mt-auto">Sign Up Free</button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card glass-card pro-card premium-border">
+                    <div class="popular-tag">MOST POPULAR</div>
+                    <h3>Mockly Pass PRO</h3>
+                    <div class="price">₹499<span>/year</span></div>
+                    <p class="price-desc">Less than ₹42/month for complete access.</p>
+                    <ul class="plan-features">
+                        <li><i class="fa-solid fa-check text-green"></i> <strong>Unlimited Mock Tests</strong> (5000+)</li>
+                        <li><i class="fa-solid fa-check text-green"></i> <strong>15+ Years PYQs</strong> as Mocks</li>
+                        <li><i class="fa-solid fa-check text-green"></i> AI Weakness Analytics</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Video Solutions by Toppers</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Re-attempt questions</li>
+                    </ul>
+                    <button class="btn-primary btn-glow w-100 mt-auto">Get PRO Pass</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-glow-line"></div>
+        <div class="footer-content">
+            <div class="footer-brand-section">
+                <a href="#" class="brand footer-brand-logo">
+                    <div class="logo-mark">M</div>
+                    <span class="brand-text">Mockly</span>
+                </a>
+                <p class="footer-desc">India's most technologically advanced test series platform. Train on the exact real-exam interface and claim your unfair advantage.</p>
+                <div class="social-links-premium">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-section">
+                <div class="footer-link-group">
+                    <h4>Top Exams</h4>
+                    <a href="#">SSC CGL Test Series</a>
+                    <a href="#">SBI PO Mock Test</a>
+                    <a href="#">RRB NTPC Mocks</a>
+                    <a href="#">UPSC Prelims</a>
+                    <a href="#">CTET Paper 1</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Study Resources</h4>
+                    <a href="#">Free PDF Notes</a>
+                    <a href="#">Exam Syllabus</a>
+                    <a href="#">Previous Year Papers</a>
+                    <a href="#">Topper Strategies</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Platform</h4>
+                    <a href="#">Mockly Pass PRO</a>
+                    <a href="#">AI Analytics</a>
+                    <a href="#">TCS Interface</a>
+                    <a href="#">Pricing</a>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Ahead</h4>
+                    <p>Get the latest exam alerts and daily GK updates delivered straight to your inbox.</p>
+                    <form class="premium-newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <div class="app-downloads-mini">
+                        <p>Get the App</p>
+                        <div class="dl-buttons">
+                            <a href="#"><i class="fa-brands fa-google-play"></i></a>
+                            <a href="#"><i class="fa-brands fa-apple"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2026 Mockly Premium. All rights reserved.
+            </div>
+            <div class="footer-legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="js/api-categories.js" defer></script>
+    <script src="js/api-mock.js?v=2" defer></script>
+    <script src="js/script.js?v=3" defer></script>
+</body>
+</html>

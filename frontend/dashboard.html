@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mockly Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bento.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+    
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-glow-line"></div>
+        <div class="footer-content">
+            <div class="footer-brand-section">
+                <a href="#" class="brand footer-brand-logo">
+                    <div class="logo-mark">M</div>
+                    <span class="brand-text">Mockly</span>
+                </a>
+                <p class="footer-desc">India's most technologically advanced test series platform. Train on the exact real-exam interface and claim your unfair advantage.</p>
+                <div class="social-links-premium">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-section">
+                <div class="footer-link-group">
+                    <h4>Top Exams</h4>
+                    <a href="#">SSC CGL Test Series</a>
+                    <a href="#">SBI PO Mock Test</a>
+                    <a href="#">RRB NTPC Mocks</a>
+                    <a href="#">UPSC Prelims</a>
+                    <a href="#">CTET Paper 1</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Study Resources</h4>
+                    <a href="#">Free PDF Notes</a>
+                    <a href="#">Exam Syllabus</a>
+                    <a href="#">Previous Year Papers</a>
+                    <a href="#">Topper Strategies</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Platform</h4>
+                    <a href="#">Mockly Pass PRO</a>
+                    <a href="#">AI Analytics</a>
+                    <a href="#">TCS Interface</a>
+                    <a href="#">Pricing</a>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Ahead</h4>
+                    <p>Get the latest exam alerts and daily GK updates delivered straight to your inbox.</p>
+                    <form class="premium-newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <div class="app-downloads-mini">
+                        <p>Get the App</p>
+                        <div class="dl-buttons">
+                            <a href="#"><i class="fa-brands fa-google-play"></i></a>
+                            <a href="#"><i class="fa-brands fa-apple"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2026 Mockly Premium. All rights reserved.
+            </div>
+            <div class="footer-legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    
+    <!-- Background Base -->
+    <div class="db-base-bg"></div>
+
+    <!-- Navigation - EXACT SAME AS INDEX -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <div class="nav-links">
+                <a href="exams.html" class="nav-item">Exams</a>
+                <a href="test-details.html" class="nav-item text-purple" style="font-weight: 600;"><i class="fa-solid fa-bolt"></i> Test Series</a>
+                <a href="live-tests.html" class="nav-item"><span class="pulse-dot-small text-red"></span> Live Tests</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon" style="display:none;"></i>
+                </button>
+                <button class="btn-ghost" id="nav-login-btn">Login</button>
+                <button class="btn-primary" id="nav-signup-btn">Sign Up Free</button>
+                
+                <div id="user-menu" style="display: none; align-items: center; gap: 15px;">
+                    <a href="dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;" title="Go to Dashboard">
+                        <img src="assets/avatars/memoji_1.webp" id="nav-avatar" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--primary-color);">
+                        <span id="user-greeting" style="font-weight: 500;"></span>
+                    </a>
+                    <button class="btn-ghost" id="nav-logout-btn" style="border: 1px solid var(--border-glass);">Logout</button>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <div class="drawer-header">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <button class="close-drawer-btn" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="exams.html" class="drawer-item" style="--anim-order: 1;"><div class="d-icon-box"><i class="fa-solid fa-layer-group"></i></div> Exams</a>
+            <a href="test-details.html" class="drawer-item" style="--anim-order: 2;"><div class="d-icon-box text-purple"><i class="fa-solid fa-bolt"></i></div> Test Series</a>
+            <a href="live-tests.html" class="drawer-item" style="--anim-order: 3;"><div class="d-icon-box text-red"><i class="fa-solid fa-tower-broadcast"></i></div> Live Tests</a>
+        </div>
+        <div class="drawer-actions">
+            <button class="btn-ghost w-100 mb-2 drawer-login-btn">Login</button>
+            <button class="btn-primary w-100 drawer-signup-btn premium-cta">Sign Up Free</button>
+        </div>
+        <div class="drawer-socials">
+            <a href="#" class="d-social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="d-social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+
+    <!-- ============ DASHBOARD LAYOUT ============ -->
+    <div class="db-layout-wrapper">
+        
+        <!-- Left Sidebar -->
+        <aside class="db-sidebar">
+
+            <div class="sidebar-profile">
+                <div class="sidebar-avatar-wrapper" id="sidebar-avatar-wrapper">
+                    <img src="assets/avatars/memoji_1.webp" alt="Profile" class="sidebar-avatar" id="sidebar-avatar">
+                    <div class="premium-badge"><i class="fa-solid fa-crown"></i></div>
+                </div>
+                <div class="sidebar-user-info">
+                    <h3 id="sidebar-username">Aspirant</h3>
+                    <span class="sidebar-user-email" id="sidebar-email">candidate@example.com</span>
+                    <span class="sidebar-user-role" id="sidebar-role">Free Member</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-target="overview-view">
+                    <i class="fa-solid fa-house"></i> Overview
+                </a>
+                <a href="#" class="sidebar-link ai-nav-link" data-target="ai-analysis-view">
+                    <svg class="ai-tab-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="url(#aiGradient)"/>
+                        <path d="M20 3L20.8 5.2L23 6L20.8 6.8L20 9L19.2 6.8L17 6L19.2 5.2L20 3Z" fill="url(#aiGradient)"/>
+                        <path d="M4 18L4.8 20.2L7 21L4.8 21.8L4 24L3.2 21.8L1 21L3.2 20.2L4 18Z" fill="url(#aiGradient)"/>
+                        <defs>
+                            <linearGradient id="aiGradient" x1="2" y1="2" x2="23" y2="24" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#c084fc"/>
+                                <stop offset="1" stop-color="#ec4899"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    AI Analysis <span class="badge-new-anim">NEW</span>
+                </a>
+                <a href="analytics.html" class="sidebar-link">
+                    <i class="fa-solid fa-chart-pie"></i> Analytics
+                </a>
+                <a href="mock_tests.html" class="sidebar-link">
+                    <i class="fa-solid fa-file-pen"></i> Mock Tests
+                </a>
+                <a href="saved_questions.html" class="sidebar-link">
+                    <i class="fa-solid fa-bookmark"></i> Saved Questions
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link logout-link" id="sidebar-logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="db-content">
+            
+            <!-- OVERVIEW VIEW -->
+            <div id="overview-view" class="view-container active-view fade-in">
+                
+                <div class="bento-grid">
+                    
+                    <!-- 1. The Hero Bento (Spans 2 columns, 1 row) -->
+                    <div class="bento-item bento-hero">
+                        <div class="bento-bg-glow"></div>
+                        <div class="hero-content">
+                            <h1 class="hero-title">Command Center: <span id="ov-name-span" class="text-gradient">Aspirant</span></h1>
+                            <p class="hero-subtitle">You have <strong class="text-white">42 days</strong> left until SSC CGL Tier 1.</p>
+                            
+                            <div class="bento-hero-pattern"></div>
+                            <div class="hero-stats-row">
+                                <div class="hero-stat glass-card">
+                                    <div class="stat-ring-container">
+                                        <div class="ring-glow ring-glow-red"></div>
+                                        <svg class="stat-ring" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <path class="circle-fill stroke-red" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <text x="18" y="20.35" class="percentage" id="hero-gap-val">-15</text>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-details">
+                                        <span class="stat-title">Target Gap</span>
+                                        <span class="stat-subtitle" id="hero-gap-sub">Next Goal: 155</span>
+                                    </div>
+                                </div>
+                                <div class="hero-stat glass-card">
+                                    <div class="stat-ring-container">
+                                        <div class="ring-glow ring-glow-green"></div>
+                                        <svg class="stat-ring" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <path class="circle-fill stroke-green" stroke-dasharray="72, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <text x="18" y="20.35" class="percentage" id="hero-cov-val">72%</text>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-details">
+                                        <span class="stat-title">Coverage</span>
+                                        <span class="stat-subtitle">of Tier 1 Syllabus</span>
+                                    </div>
+                                </div>
+                                <div class="hero-stat glass-card">
+                                    <div class="stat-ring-container">
+                                        <div class="ring-glow ring-glow-purple"></div>
+                                        <svg class="stat-ring" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <path class="circle-fill stroke-purple" stroke-dasharray="45, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <text x="18" y="20.35" class="percentage" id="hero-tests-val">24</text>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-details">
+                                        <span class="stat-title">Tests Taken</span>
+                                        <span class="stat-subtitle" id="hero-tests-sub">+2 this week</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Global Rank Bento (Small Square) -->
+                    <div class="bento-item bento-stat clickable-card" id="global-rank-card">
+                        <div class="db-bento-header">
+                            <i class="fa-solid fa-ranking-star icon-purple"></i>
+                            <span>Global Rank</span>
+                        </div>
+                        <div class="bento-body">
+                            <h3 class="count-up" id="hero-rank-val" data-target="94">0</h3>
+                            <div class="bento-chart"><canvas id="rankSparkline"></canvas></div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Accuracy Heat Bento (Small Square) -->
+                    <div class="bento-item bento-stat clickable-card" id="accuracy-heat-card">
+                        <div class="db-bento-header">
+                            <i class="fa-solid fa-bullseye icon-green"></i>
+                            <span>Accuracy Heat</span>
+                        </div>
+                        <div class="bento-body">
+                            <h3 class="count-up" id="hero-acc-val" data-target="82">0<small>%</small></h3>
+                            <div class="bento-chart"><canvas id="accuracySparkline"></canvas></div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Speed Bento (Small Square) -->
+                    <div class="bento-item bento-stat">
+                        <div class="db-bento-header">
+                            <i class="fa-solid fa-stopwatch icon-orange"></i>
+                            <span>Avg Speed</span>
+                        </div>
+                        <div class="bento-body">
+                            <h3 class="count-up" id="hero-speed-val" data-target="42">0<small>s</small></h3>
+                            
+                            <div class="speed-visual mt-3">
+                                <div class="speed-row">
+                                    <span class="speed-label">You</span>
+                                    <div class="speed-bar-wrapper">
+                                        <div class="speed-bar-fill user-speed" style="width: 70%;"></div>
+                                    </div>
+                                    <span class="speed-time">42s</span>
+                                </div>
+                                <div class="speed-row mt-2">
+                                    <span class="speed-label" style="color: #fb923c;">Topper</span>
+                                    <div class="speed-bar-wrapper">
+                                        <div class="speed-bar-fill topper-speed" style="width: 60%;"></div>
+                                    </div>
+                                    <span class="speed-time" style="color: #fb923c;">36s</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 5. Predicted Score Bento (Small Square) -->
+                    <div class="bento-item bento-stat">
+                        <div class="db-bento-header">
+                            <i class="fa-solid fa-bolt icon-yellow"></i>
+                            <span>Predicted Score</span>
+                        </div>
+                        <div class="bento-body score-bento-body">
+                            <div class="score-gauge-container">
+                                <svg class="score-gauge" viewBox="0 0 100 60">
+                                    <path class="gauge-bg" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8" stroke-linecap="round"/>
+                                    <path class="gauge-fill" id="score-gauge-fill" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="url(#scoreGradient)" stroke-width="8" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="125.6"/>
+                                    <defs>
+                                        <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#ef4444" />
+                                            <stop offset="50%" stop-color="#facc15" />
+                                            <stop offset="100%" stop-color="#22c55e" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="gauge-content">
+                                    <h3 class="count-up" id="hero-score-val" data-target="154">0</h3>
+                                    <span class="score-max">/200</span>
+                                </div>
+                            </div>
+                            <p class="insight-text text-green mt-1 text-center" style="font-size: 0.85rem;"><i class="fa-solid fa-arrow-up"></i> Safe Zone</p>
+                        </div>
+                    </div>
+
+                    <!-- 6. The Brain Bento (Spans 2 columns, 2 rows) -->
+                    <div class="bento-item bento-brain card-interactive" id="cognitive-card">
+                        <div class="tech-grid-bg"></div>
+                        <div class="db-bento-header justify-between">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-brain icon-pink"></i>
+                                <span>Cognitive Profile</span>
+                            </div>
+                            <span class="badge-ai">AI Mapped</span>
+                        </div>
+                        <div class="bento-body chart-wrapper">
+                            <canvas id="cognitiveRadarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 7. Deep Insights Bento (Spans full width at bottom) -->
+                    <div class="bento-item bento-insights">
+                        <div class="db-bento-header">
+                            <i class="fa-solid fa-heart-pulse icon-red"></i>
+                            <span>Subject Vitals</span>
+                        </div>
+                        <div class="insights-grid mt-3">
+                            <div class="insight-status-item">
+                                <div class="status-indicator warning"></div>
+                                <div class="status-details">
+                                    <span class="subject">Quantitative Aptitude</span>
+                                    <span class="score">85%</span>
+                                </div>
+                                <div class="leak-info text-red">Critical Leak: Geometry</div>
+                            </div>
+                            <div class="insight-status-item">
+                                <div class="status-indicator optimal"></div>
+                                <div class="status-details">
+                                    <span class="subject">Logical Reasoning</span>
+                                    <span class="score">92%</span>
+                                </div>
+                                <div class="leak-info text-green">Strongest Area</div>
+                            </div>
+                            <div class="insight-status-item">
+                                <div class="status-indicator danger"></div>
+                                <div class="status-details">
+                                    <span class="subject">General English</span>
+                                    <span class="score">78%</span>
+                                </div>
+                                <div class="leak-info text-red">Critical Leak: Reading Comp</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div> <!-- End Overview View -->
+
+            <!-- AI ANALYSIS VIEW -->
+            <div id="ai-analysis-view" class="view-container fade-in" style="display: none;">
+                
+                <header class="ov-header mb-4">
+                    <div class="ov-greeting-box" style="flex: 1;">
+                        <h1 class="ov-greeting"><span class="text-gradient">AI Intelligence Grid</span></h1>
+                        <p class="ov-subtitle">Actionable insights driven by 1M+ data points to guarantee your success.</p>
+                    </div>
+                </header>
+
+                <!-- AI INTELLIGENCE GRID -->
+                <section class="ai-mac-grid stagger-animate">
+                    
+                    <!-- Card 1: AI Score Predictor -->
+                    <div class="mac-card">
+                        <div class="mac-header">
+                            <div class="mac-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="mac-title">Score Predictor</span>
+                            <span class="badge-ai"><i class="fa-solid fa-bolt"></i> AI Powered</span>
+                        </div>
+                        <div class="mac-content text-center">
+                            <div class="predictor-gauge">
+                                <canvas id="predictorGaugeChart" height="140"></canvas>
+                                <div class="gauge-center-text">
+                                    <h3 class="predicted-score">154<span class="total">/200</span></h3>
+                                    <p>Predicted Score</p>
+                                </div>
+                            </div>
+                            <div class="predictor-insight mt-3">
+                                <div class="insight-pill safe">
+                                    <i class="fa-solid fa-shield-check"></i> 87% Probability to clear Tier 1
+                                </div>
+                                <p class="insight-text mt-2 text-sm text-gray-400">You are in the safe zone. Increase Quant accuracy by 5% to reach the 95% guaranteed safety margin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Micro-Weakness & Rescue Mock -->
+                    <div class="mac-card">
+                        <div class="mac-header">
+                            <div class="mac-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="mac-title">Micro-Weakness Target</span>
+                        </div>
+                        <div class="mac-content">
+                            <div class="critical-weakness-box">
+                                <div class="cw-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="cw-text">
+                                    <h4>Critical Weakness: Number System</h4>
+                                    <p>You spend <strong>+50s extra</strong> per question compared to toppers, with only <strong>35% accuracy</strong>.</p>
+                                </div>
+                            </div>
+                            
+                            <button id="generateRescueMockBtn" class="rescue-mock-btn mt-4">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Generate Rescue Mock
+                            </button>
+                            
+                            <div id="rescueMockProgress" class="rescue-progress-container mt-4" style="display: none;">
+                                <div class="progress-header">
+                                    <span class="progress-title">Building Custom Practice Set...</span>
+                                    <span class="progress-percent">78%</span>
+                                </div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+                                <ul class="progress-steps mt-3">
+                                    <li class="done"><i class="fa-solid fa-check"></i> Analyzing weak areas in Quant</li>
+                                    <li class="done"><i class="fa-solid fa-check"></i> Selecting 15 high-yield questions</li>
+                                    <li class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Compiling test environment...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Exam Strategy & Time Leaks -->
+                    <div class="mac-card">
+                        <div class="mac-header">
+                            <div class="mac-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="mac-title">Exam Strategy</span>
+                        </div>
+                        <div class="mac-content">
+                            <h4 class="strategy-heading mb-3">Time Leaks Detected</h4>
+                            
+                            <div class="leak-item mb-3">
+                                <div class="leak-header">
+                                    <span class="leak-topic">Reasoning Puzzles</span>
+                                    <span class="leak-impact text-red">-8 Mins Wasted</span>
+                                </div>
+                                <p class="leak-desc text-xs text-gray-400">You spent 8 mins on 4 hard puzzles and got 3 wrong. <strong>AI Suggestion:</strong> Skip puzzles longer than 4 lines on your first pass.</p>
+                                <div class="leak-bar-bg mt-1"><div class="leak-bar-fill" style="width: 80%; background: #ef4444;"></div></div>
+                            </div>
+
+                            <div class="leak-item">
+                                <div class="leak-header">
+                                    <span class="leak-topic">English Comprehension</span>
+                                    <span class="leak-impact text-green">+3 Mins Saved</span>
+                                </div>
+                                <p class="leak-desc text-xs text-gray-400">Excellent pacing. You scan questions before reading the passage perfectly.</p>
+                                <div class="leak-bar-bg mt-1"><div class="leak-bar-fill" style="width: 30%; background: #10b981;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div> <!-- End AI Analysis View -->
+
+            <!-- EMPTY STATE (Hidden by default, toggled via JS) -->
+            <div id="db-empty-state" class="empty-state-container fade-in" style="display: none;">
+                <div class="empty-state-content">
+                    <div class="empty-state-icon">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h2>Welcome to Mockly Premium!</h2>
+                    <p>You haven't taken any tests yet. Take a diagnostic mock to unlock your AI Coach and personalized analytics.</p>
+                    <button class="ov-primary-btn" style="margin: 24px auto;">
+                        <i class="fa-solid fa-bolt"></i> Start Diagnostic Test
+                    </button>
+                </div>
+            </div>
+
+        </main>
+        
+    </div>
+
+    <!-- Rank Summary Modal -->
+    <div id="rank-summary-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content" style="max-width: 600px; text-align: left;">
+            <button class="close-modal" id="close-rank-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <i class="fa-solid fa-ranking-star icon-purple" style="font-size: 2rem; margin-bottom: 12px; display: inline-block;"></i>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin: 0 0 8px 0;">Global Rank Summary</h2>
+                <p style="color: #94a3b8; margin: 0;">Track your rank improvement across Mockly tests.</p>
+            </div>
+            
+            <div class="rank-summary-stats" style="display: flex; gap: 20px; margin: 24px 0;">
+                <div class="rs-stat-box" style="flex: 1; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">Best Rank (Peak)</div>
+                    <div id="modal-peak-rank" style="font-size: 2.5rem; font-weight: 700; color: #34d399; font-family: 'Outfit', sans-serif; line-height: 1;">0</div>
+                </div>
+                <div class="rs-stat-box" style="flex: 1; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">Overall Growth</div>
+                    <div id="modal-growth-val" style="font-size: 2.5rem; font-weight: 700; color: #a855f7; font-family: 'Outfit', sans-serif; line-height: 1;">+0</div>
+                </div>
+            </div>
+
+            <div style="height: 250px; margin-top: 24px; position: relative;">
+                <canvas id="detailedRankChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accuracy Summary Modal -->
+    <div id="accuracy-summary-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content" style="max-width: 600px; text-align: left;">
+            <button class="close-modal" id="close-acc-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <i class="fa-solid fa-bullseye icon-green" style="font-size: 2rem; margin-bottom: 12px; display: inline-block;"></i>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin: 0 0 8px 0;">Accuracy Heat Summary</h2>
+                <p style="color: #94a3b8; margin: 0;">Track your accuracy growth across Mockly tests.</p>
+            </div>
+            
+            <div class="rank-summary-stats" style="display: flex; gap: 20px; margin: 24px 0;">
+                <div class="rs-stat-box" style="flex: 1; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">Peak Accuracy</div>
+                    <div id="modal-peak-acc" style="font-size: 2.5rem; font-weight: 700; color: #34d399; font-family: 'Outfit', sans-serif; line-height: 1;">0<small style="font-size: 1rem; color: #94a3b8;">%</small></div>
+                </div>
+                <div class="rs-stat-box" style="flex: 1; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">Overall Growth</div>
+                    <div id="modal-acc-growth-val" style="font-size: 2.5rem; font-weight: 700; color: #a855f7; font-family: 'Outfit', sans-serif; line-height: 1;">+0%</div>
+                </div>
+            </div>
+
+            <div style="height: 250px; margin-top: 24px; position: relative;">
+                <canvas id="detailedAccuracyChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cognitive Summary Modal -->
+    <div id="cognitive-summary-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content" style="max-width: 600px; text-align: left;">
+            <button class="close-modal" id="close-cognitive-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <i class="fa-solid fa-brain icon-pink" style="font-size: 2rem; margin-bottom: 12px; display: inline-block;"></i>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin: 0 0 8px 0;">Cognitive Breakdown</h2>
+                <p style="color: #94a3b8; margin: 0;">Detailed AI mapping of your exam characteristics.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px;">
+                <div class="rs-stat-box" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Speed</div>
+                    <div id="modal-cog-speed" style="font-size: 2rem; font-weight: 700; color: #a855f7; font-family: 'Outfit', sans-serif;">0</div>
+                    <p style="color: #64748b; font-size: 0.85rem; margin: 4px 0 0 0;">Measured from avg time spent.</p>
+                </div>
+                <div class="rs-stat-box" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Accuracy</div>
+                    <div id="modal-cog-accuracy" style="font-size: 2rem; font-weight: 700; color: #3b82f6; font-family: 'Outfit', sans-serif;">0</div>
+                    <p style="color: #64748b; font-size: 0.85rem; margin: 4px 0 0 0;">Raw precision score.</p>
+                </div>
+                <div class="rs-stat-box" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Endurance</div>
+                    <div id="modal-cog-endurance" style="font-size: 2rem; font-weight: 700; color: #f59e0b; font-family: 'Outfit', sans-serif;">0</div>
+                    <p style="color: #64748b; font-size: 0.85rem; margin: 4px 0 0 0;">Stamina & completion rate.</p>
+                </div>
+                <div class="rs-stat-box" style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Strategy</div>
+                    <div id="modal-cog-strategy" style="font-size: 2rem; font-weight: 700; color: #10b981; font-family: 'Outfit', sans-serif;">0</div>
+                    <p style="color: #64748b; font-size: 0.85rem; margin: 4px 0 0 0;">Negative marking avoidance.</p>
+                </div>
+            </div>
+            
+            <div class="rs-stat-box" style="margin-top: 16px; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Knowledge Depth</div>
+                <div id="modal-cog-knowledge" style="font-size: 2.5rem; font-weight: 700; color: #ec4899; font-family: 'Outfit', sans-serif;">0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js for Performance Trend -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
