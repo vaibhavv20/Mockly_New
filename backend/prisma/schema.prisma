@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ----------------------------------------------------
+// Analytics Models (Hybrid Approach)
+// We only store MongoDB IDs as Strings to link data.
+// ----------------------------------------------------
+
+model TestAttempt {
+  id               String            @id @default(uuid())
+  userId           String            // Maps to MongoDB User._id
+  paperId          String            // Maps to MongoDB Paper._id
+  totalScore       Float
+  totalTimeSeconds Int
+  questionAttempts QuestionAttempt[]
+  createdAt        DateTime          @default(now())
+
+  @@index([userId])
+}
+
+model QuestionAttempt {
+  id               String      @id @default(uuid())
+  testAttemptId    String
+  testAttempt      TestAttempt @relation(fields: [testAttemptId], references: [id])
+  questionId       String      // Maps to MongoDB Question._id
+  topic            String      // e.g., "Quant"
+  subTopic         String      // e.g., "Number System"
+  isCorrect        Boolean
+  timeSpentSeconds Int
+  behaviorFlag     String?     // e.g., "SILLY_MISTAKE", "TIME_TRAP", "CONCEPTUAL_GAP"
+
+  @@index([topic, subTopic])
+  @@index([testAttemptId])
+}
+
+model TopicProficiency {
+  id             String @id @default(uuid())
+  userId         String // Maps to MongoDB User._id
+  topic          String // e.g., "Quant"
+  subTopic       String // e.g., "Number System"
+  avgAccuracy    Float  // Rolling average
+  avgTimeSeconds Float  // Rolling average
+  totalAttempted Int    @default(0)
+  updatedAt      DateTime @updatedAt
+
+  @@unique([userId, subTopic]) // Ensure one record per user per subtopic
+  @@index([userId])
+}
