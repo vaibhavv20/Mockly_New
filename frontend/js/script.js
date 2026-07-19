@@ -184,6 +184,37 @@ document.addEventListener('DOMContentLoaded', () => {
         drawerItems.forEach(item => {
             item.addEventListener('click', toggleDrawer);
         });
+        
+        // Connect Drawer Auth Buttons to Main Auth Logic
+        const drawerLoginBtn = document.querySelector('.drawer-login-btn');
+        if (drawerLoginBtn) {
+            drawerLoginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleDrawer();
+                const navLoginBtn = document.getElementById('nav-login-btn');
+                if (navLoginBtn) navLoginBtn.click();
+            });
+        }
+        
+        const drawerSignupBtn = document.querySelector('.drawer-signup-btn');
+        if (drawerSignupBtn) {
+            drawerSignupBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleDrawer();
+                const navSignupBtn = document.getElementById('nav-signup-btn');
+                if (navSignupBtn) navSignupBtn.click();
+            });
+        }
+        
+        const drawerLogoutBtn = document.querySelector('.drawer-logout-btn');
+        if (drawerLogoutBtn) {
+            drawerLogoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleDrawer();
+                const navLogoutBtn = document.getElementById('nav-logout-btn');
+                if (navLogoutBtn) navLogoutBtn.click();
+            });
+        }
     }
 
     // Bilingual Toggle Demo in Hero Visual
@@ -829,11 +860,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const userMenu = document.getElementById('user-menu');
         const userGreeting = document.getElementById('user-greeting');
         const navAvatar = document.getElementById('nav-avatar');
+        
+        const drawerActions = document.querySelector('.drawer-actions');
+        const drawerUserActions = document.querySelector('.drawer-user-actions');
 
         if (token && userStr) {
             const user = JSON.parse(userStr);
             if (loginBtn) loginBtn.style.display = 'none';
             if (signupBtn) signupBtn.style.display = 'none';
+            
+            if (drawerActions) drawerActions.style.display = 'none';
+            if (drawerUserActions) drawerUserActions.style.display = 'block';
+
             if (userMenu) {
                 userMenu.style.display = 'flex';
                 userMenu.style.position = 'relative';
@@ -970,6 +1008,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (loginBtn) loginBtn.style.display = 'inline-block';
             if (signupBtn) signupBtn.style.display = 'inline-block';
             if (userMenu) userMenu.style.display = 'none';
+            
+            if (drawerActions) drawerActions.style.display = 'block';
+            if (drawerUserActions) drawerUserActions.style.display = 'none';
         }
     };
 
