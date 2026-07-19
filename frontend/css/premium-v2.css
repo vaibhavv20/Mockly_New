@@ -1,0 +1,300 @@
+/* --- Mockly Premium V3 (Ambient Glassmorphism - 'Nexus' Style) --- */
+
+:root {
+    --bg-deep: #0a0a0f;
+    --glass-panel: rgba(20, 20, 30, 0.35);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-highlight: rgba(255, 255, 255, 0.25);
+    
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    
+    --accent-blue: #6366f1;
+    --accent-blue-glow: rgba(99, 102, 241, 0.5);
+    --accent-orange: #f97316;
+    
+    --blur-heavy: blur(30px);
+}
+
+body.v2-dark {
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Ambient Background Orbs */
+body.v2-dark::before,
+body.v2-dark::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+body.v2-dark::before {
+    top: -10%;
+    left: 20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99,102,241,0.3) 0%, rgba(0,0,0,0) 70%);
+}
+body.v2-dark::after {
+    bottom: -10%;
+    right: 10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, rgba(0,0,0,0) 70%);
+}
+
+.v2-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+/* Floating Top Navigation (Nexus Style) */
+.nexus-nav {
+    display: flex;
+    align-items: center;
+    background: var(--glass-panel);
+    backdrop-filter: var(--blur-heavy);
+    -webkit-backdrop-filter: var(--blur-heavy);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 12px 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.nexus-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-right: 40px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Category Pills inside Nav */
+.nexus-categories {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.nexus-categories::-webkit-scrollbar { display: none; }
+
+.nexus-pill {
+    padding: 8px 16px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+.nexus-pill:hover {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.05);
+}
+.nexus-pill.active {
+    color: #fff;
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+}
+
+/* Bento/Masonry Grid */
+.nexus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 24px;
+}
+
+/* Glass Card */
+.nexus-card {
+    background: linear-gradient(135deg, rgba(30,30,40,0.6) 0%, rgba(20,20,30,0.4) 100%);
+    backdrop-filter: var(--blur-heavy);
+    -webkit-backdrop-filter: var(--blur-heavy);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.nexus-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: var(--glass-border-highlight);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(99,102,241,0.1);
+}
+
+/* Featured Card (Spans 2 columns & rows if possible) */
+.nexus-card.featured {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Internal Card Elements */
+.n-card-img {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    background: #111;
+}
+
+/* For featured card, image is in middle */
+.featured .n-card-img {
+    height: 300px;
+    order: 2;
+}
+/* For normal cards, image is top */
+.normal .n-card-img {
+    height: 180px;
+    order: -1;
+    margin-top: -24px;
+    margin-left: -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
+    border-radius: 24px 24px 0 0;
+    margin-bottom: 20px;
+}
+
+.n-card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.featured .n-card-content {
+    order: 1;
+}
+
+.n-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+}
+.featured .n-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+.n-title-highlight {
+    color: var(--accent-blue);
+}
+
+.n-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.n-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--accent-orange);
+    color: var(--accent-orange);
+    background: rgba(249, 115, 22, 0.1);
+}
+.n-tag.blue {
+    border-color: var(--accent-blue);
+    color: #a5b4fc;
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.n-author {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.n-summary {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+    order: 3;
+}
+
+.n-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    order: 4;
+}
+
+.n-btn {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid var(--accent-blue);
+    color: #a5b4fc;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.n-btn:hover {
+    background: var(--accent-blue);
+    color: #fff;
+    box-shadow: 0 0 15px var(--accent-blue-glow);
+}
+
+.n-icons {
+    display: flex;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+.n-icons i:hover {
+    color: var(--text-primary);
+}
+
+@media (max-width: 1024px) {
+    .nexus-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .nexus-card.featured {
+        grid-column: span 2;
+    }
+}
+@media (max-width: 768px) {
+    .nexus-grid {
+        grid-template-columns: 1fr;
+    }
+    .nexus-card.featured {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    .featured .n-title {
+        font-size: 1.6rem;
+    }
+}

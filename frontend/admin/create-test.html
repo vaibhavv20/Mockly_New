@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Test - Mockly Admin</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-brand">
+                <i class="fa-solid fa-graduation-cap"></i> Mockly Admin
+            </a>
+        </div>
+        
+        <div class="sidebar-menu">
+            <div class="menu-label">Main Menu</div>
+            <a href="dashboard.html" class="menu-item">
+                <i class="fa-solid fa-house"></i> Dashboard Overview
+            </a>
+            <a href="manage-tests.html" class="menu-item">
+                <i class="fa-solid fa-file-lines"></i> Manage Tests
+            </a>
+            <a href="create-test.html" class="menu-item active">
+                <i class="fa-solid fa-plus-circle"></i> Create New Test
+            </a>
+            <a href="question-bank.html" class="menu-item">
+                <i class="fa-solid fa-database"></i> Question Bank
+            </a>
+            
+            <div class="menu-label" style="margin-top: 20px;">Reports</div>
+            <a href="analytics.html" class="menu-item">
+                <i class="fa-solid fa-chart-line"></i> Analytics & Results
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-users"></i> Students
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logoutAdmin()">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="page-title">Create New Test</div>
+            
+            <div class="nav-actions">
+                <button class="btn-primary" onclick="document.getElementById('paperForm').requestSubmit()">
+                    <i class="fa-solid fa-save"></i> Save Paper
+                </button>
+                <div class="admin-profile" style="margin-left: 20px;">
+                    <div class="avatar">A</div>
+                    <span style="font-weight: 500;">Admin User</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <div class="dashboard-body">
+            
+            <form id="paperForm">
+                <!-- Config Card -->
+                <div class="card-panel" style="margin-bottom: 30px;">
+                    <div class="card-header">
+                        <h2>1. Paper Configuration</h2>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label>Test Title *</label>
+                            <input type="text" id="title" class="form-control" required placeholder="e.g., SSC CGL Tier 1 Full Mock">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="description" class="form-control" rows="2" placeholder="Brief description of the test..."></textarea>
+                        </div>
+                        
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Duration (Minutes) *</label>
+                                <input type="number" id="duration" class="form-control" required min="1" value="60">
+                            </div>
+                            <div class="form-group">
+                                <label>Total Marks *</label>
+                                <input type="number" id="totalMarks" class="form-control" required min="1" value="200">
+                            </div>
+                            <div class="form-group">
+                                <label>Category (Board) *</label>
+                                <select id="category" class="form-control" required>
+                                    <option value="">Select Category</option>
+                                    <option value="ssc-cgl">SSC CGL</option>
+                                    <option value="ssc-chsl">SSC CHSL</option>
+                                    <option value="ssc-cpo">SSC CPO</option>
+                                    <option value="upsc-cse">UPSC CSE</option>
+                                    <option value="banking-po">Banking PO</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Paper Type *</label>
+                                <select id="paperType" class="form-control" required onchange="handlePaperTypeChange()">
+                                    <option value="Full Mock Test">Full Mock Test</option>
+                                    <option value="Sectional">Sectional Test</option>
+                                    <option value="Chapter-wise">Chapter-wise</option>
+                                    <option value="PYP">Previous Year Paper</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mode Selection -->
+                <div style="margin-bottom: 20px; display: flex; gap: 15px;">
+                    <button type="button" id="btnManualMode" class="btn-primary" style="background-color: var(--primary-dark);" onclick="switchMode('manual')">Manual Builder</button>
+                    <button type="button" id="btnBulkMode" class="btn-primary" style="background-color: #cbd5e1; color: #333;" onclick="switchMode('bulk')">Bulk Excel Upload</button>
+                </div>
+
+                <!-- Questions Builder (Manual Mode) -->
+                <div class="card-panel" id="manualBuilderSection">
+                    <div class="card-header">
+                        <h2>2. Build Question Paper (Manual)</h2>
+                        <button type="button" class="btn-primary" onclick="addQuestionBlock()" style="background-color: var(--success);">
+                            <i class="fa-solid fa-plus"></i> Add Question
+                        </button>
+                    </div>
+                    
+                    <div class="form-section" id="questionsContainer">
+                        <!-- Dynamic Questions appended here -->
+                    </div>
+                </div>
+
+                <!-- Bulk Upload Section (Hidden by Default) -->
+                <div class="card-panel" id="bulkUploadSection" style="display: none;">
+                    <div class="card-header">
+                        <h2>2. Bulk Upload via Excel</h2>
+                        <a href=((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + "/api/papers/bulk-template" target="_blank" class="btn-primary" style="background-color: var(--warning); color: #fff;">
+                            <i class="fa-solid fa-download"></i> Download Template
+                        </a>
+                    </div>
+                    
+                    <div class="form-section" style="text-align: center; padding: 40px;">
+                        <i class="fa-solid fa-file-excel" style="font-size: 3rem; color: #10b981; margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 10px;">Upload Filled Excel Template</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">Download the template, fill in your 100 questions, and upload it here to instantly generate the test.</p>
+                        
+                        <input type="file" id="excelUpload" accept=".xlsx, .xls" class="form-control" style="max-width: 400px; margin: 0 auto; padding: 10px;">
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+    <script>
+        // Check Admin Auth
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            alert('Unauthorized access. Please login as Admin.');
+            window.location.href = '../index.html';
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('adminToken');
+            window.location.href = '../index.html';
+        }
+
+        let questionCount = 0;
+        const questionsContainer = document.getElementById('questionsContainer');
+        let currentMode = 'manual';
+
+        function switchMode(mode) {
+            currentMode = mode;
+            if(mode === 'manual') {
+                document.getElementById('manualBuilderSection').style.display = 'block';
+                document.getElementById('bulkUploadSection').style.display = 'none';
+                document.getElementById('btnManualMode').style.backgroundColor = 'var(--primary-dark)';
+                document.getElementById('btnManualMode').style.color = '#fff';
+                document.getElementById('btnBulkMode').style.backgroundColor = '#cbd5e1';
+                document.getElementById('btnBulkMode').style.color = '#333';
+            } else {
+                document.getElementById('manualBuilderSection').style.display = 'none';
+                document.getElementById('bulkUploadSection').style.display = 'block';
+                document.getElementById('btnBulkMode').style.backgroundColor = 'var(--primary-dark)';
+                document.getElementById('btnBulkMode').style.color = '#fff';
+                document.getElementById('btnManualMode').style.backgroundColor = '#cbd5e1';
+                document.getElementById('btnManualMode').style.color = '#333';
+            }
+        }
+
+        function handlePaperTypeChange() {
+            const pt = document.getElementById('paperType').value;
+            const sectionGroups = document.querySelectorAll('.q-section-group');
+            sectionGroups.forEach(el => {
+                el.style.display = (pt === 'Full Mock Test') ? 'block' : 'none';
+            });
+        }
+
+        function addQuestionBlock() {
+            const qId = questionCount++;
+            const div = document.createElement('div');
+            div.className = 'q-block';
+            div.id = \`qBlock-\${qId}\`;
+            
+            const pt = document.getElementById('paperType').value;
+            const sectionDisplay = (pt === 'Full Mock Test') ? 'block' : 'none';
+
+            div.innerHTML = \`
+                <div class="q-block-header">
+                    <h3 style="font-size: 1.1rem; color: var(--primary-dark);">Question \${qId + 1}</h3>
+                    <button type="button" class="btn-danger" onclick="removeQuestion(\${qId})"><i class="fa-solid fa-xmark"></i> Remove</button>
+                </div>
+                
+                <div class="form-group q-section-group" style="display: \${sectionDisplay};">
+                    <label>Section Name *</label>
+                    <input type="text" class="form-control" id="section-\${qId}" placeholder="e.g., General Intelligence">
+                </div>
+                
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Question Text (English) *</label>
+                        <textarea id="q-\${qId}-en" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Question Text (Hindi)</label>
+                        <textarea id="q-\${qId}-hi" class="form-control"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fa-solid fa-image"></i> Add Image (Optional)</label>
+                    <input type="file" id="img-\${qId}" accept="image/*" class="form-control" onchange="previewImage(event, \${qId})" style="padding: 5px;">
+                    <img id="img-preview-\${qId}" style="max-width: 200px; max-height: 200px; margin-top: 10px; display: none; border-radius: 6px; border: 1px solid #ccc;">
+                </div>
+
+                <div class="form-group">
+                    <label>Options & Correct Answer *</label>
+                    <div class="q-options-grid">
+                        \${[0, 1, 2, 3].map(optIndex => \`
+                            <div class="opt-row">
+                                <strong style="color: var(--text-muted);">\${String.fromCharCode(65 + optIndex)}</strong>
+                                <input type="text" id="q-\${qId}-opt-\${optIndex}-en" placeholder="English text" required>
+                                <div style="width: 1px; height: 20px; background: #e2e8f0;"></div>
+                                <input type="text" id="q-\${qId}-opt-\${optIndex}-hi" placeholder="Hindi text">
+                                <input type="radio" class="correct-radio" name="correct-\${qId}" value="\${optIndex}" \${optIndex === 0 ? 'checked' : ''} title="Mark as Correct">
+                            </div>
+                        \`).join('')}
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top:20px; padding-top: 15px; border-top: 1px dashed var(--border-color);">
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label>Marks (+)</label>
+                        <input type="number" id="marks-\${qId}" class="form-control" value="2" step="0.5" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label>Negative Marks (-)</label>
+                        <input type="number" id="negative-\${qId}" class="form-control" value="0.5" step="0.01" required>
+                    </div>
+                </div>
+            \`;
+            questionsContainer.appendChild(div);
+        }
+
+        function removeQuestion(id) {
+            const el = document.getElementById(\`qBlock-\${id}\`);
+            if (el) el.remove();
+        }
+
+        function previewImage(event, id) {
+            const input = event.target;
+            const preview = document.getElementById(\`img-preview-\${id}\`);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+
+        // Upload image to backend
+        async function uploadImage(file) {
+            const formData = new FormData();
+            formData.append('questionImage', file);
+            try {
+                const response = await fetch(((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + '/api/papers/upload-image', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'x-auth-token': token
+                    },
+                    body: formData
+                });
+                const data = await response.json();
+                return data.success ? data.imageUrl : null;
+            } catch (err) {
+                console.error('Image upload failed', err);
+                return null;
+            }
+        }
+
+        document.getElementById('paperForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const saveBtns = document.querySelectorAll('.btn-primary');
+            saveBtns.forEach(b => { 
+                if(b.innerHTML.includes('Save')) {
+                    b.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...'; 
+                    b.disabled = true; 
+                }
+            });
+
+            try {
+                const cat = document.getElementById('category').value;
+                const basePaperData = {
+                    title: document.getElementById('title').value,
+                    description: document.getElementById('description').value,
+                    duration: Number(document.getElementById('duration').value),
+                    totalMarks: Number(document.getElementById('totalMarks').value),
+                    category: cat,
+                    examName: cat.split('-')[0].toUpperCase(),
+                    paperType: document.getElementById('paperType').value
+                };
+
+                if (currentMode === 'manual') {
+                    // --- MANUAL UPLOAD LOGIC ---
+                    const questionBlocks = document.querySelectorAll('.q-block');
+                    if(questionBlocks.length === 0) {
+                        alert("Please add at least one question.");
+                        resetButtons();
+                        return;
+                    }
+
+                    basePaperData.questions = [];
+
+                    for (let i = 0; i < questionBlocks.length; i++) {
+                        const block = questionBlocks[i];
+                        const qIdMatch = block.id.match(/\d+/);
+                        if (!qIdMatch) continue;
+                        const qId = qIdMatch[0];
+
+                        let imageUrl = null;
+                        const imageInput = document.getElementById(\`img-\${qId}\`);
+                        if (imageInput.files && imageInput.files[0]) {
+                            imageUrl = await uploadImage(imageInput.files[0]);
+                        }
+
+                        const options = [];
+                        for (let opt = 0; opt < 4; opt++) {
+                            options.push({
+                                english: document.getElementById(\`q-\${qId}-opt-\${opt}-en\`).value,
+                                hindi: document.getElementById(\`q-\${qId}-opt-\${opt}-hi\`).value
+                            });
+                        }
+
+                        const correctOptionElement = document.querySelector(\`input[name="correct-\${qId}"]:checked\`);
+                        const correctOptionIndex = correctOptionElement ? Number(correctOptionElement.value) : 0;
+
+                        const sectionInput = document.getElementById(\`section-\${qId}\`);
+                        const sectionValue = sectionInput ? sectionInput.value : 'General';
+
+                        basePaperData.questions.push({
+                            section: document.getElementById('paperType').value === 'Full Mock Test' ? sectionValue : undefined,
+                            questionText: {
+                                english: document.getElementById(\`q-\${qId}-en\`).value,
+                                hindi: document.getElementById(\`q-\${qId}-hi\`).value
+                            },
+                            questionImage: imageUrl,
+                            options: options,
+                            correctOptionIndex: correctOptionIndex,
+                            marks: Number(document.getElementById(\`marks-\${qId}\`).value),
+                            negativeMarks: Number(document.getElementById(\`negative-\${qId}\`).value)
+                        });
+                    }
+
+                    const response = await fetch(((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + '/api/papers', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + token,
+                            'x-auth-token': token
+                        },
+                        body: JSON.stringify(basePaperData)
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        alert('Paper created successfully!');
+                        window.location.href = 'manage-tests.html';
+                    } else {
+                        alert('Error creating paper: ' + result.message);
+                        resetButtons();
+                    }
+
+                } else {
+                    // --- BULK EXCEL UPLOAD LOGIC ---
+                    const fileInput = document.getElementById('excelUpload');
+                    if (!fileInput.files || fileInput.files.length === 0) {
+                        alert('Please select an Excel file to upload.');
+                        resetButtons();
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append('excelFile', fileInput.files[0]);
+                    formData.append('paperConfig', JSON.stringify(basePaperData));
+
+                    const response = await fetch(((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + '/api/papers/bulk-upload', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'x-auth-token': token
+                        },
+                        body: formData
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        alert(result.message || 'Bulk upload successful!');
+                        window.location.href = 'manage-tests.html';
+                    } else {
+                        alert('Error in bulk upload: ' + result.message);
+                        resetButtons();
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred. Check console.');
+                resetButtons();
+            }
+        });
+
+        function resetButtons() {
+            const saveBtns = document.querySelectorAll('.btn-primary');
+            saveBtns.forEach(b => { 
+                if(b.innerHTML.includes('Save')) {
+                    b.innerHTML = '<i class="fa-solid fa-save"></i> Save Paper'; 
+                } else {
+                    b.innerHTML = '<i class="fa-solid fa-plus"></i> Add Question'; 
+                }
+                b.disabled = false; 
+            });
+        }
+
+        // Add one question by default
+        addQuestionBlock();
+    </script>
+</body>
+</html>

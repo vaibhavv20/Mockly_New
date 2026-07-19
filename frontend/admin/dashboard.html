@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mockly Admin</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-brand">
+                <i class="fa-solid fa-graduation-cap"></i> Mockly Admin
+            </a>
+        </div>
+        
+        <div class="sidebar-menu">
+            <div class="menu-label">Main Menu</div>
+            <a href="dashboard.html" class="menu-item active">
+                <i class="fa-solid fa-house"></i> Dashboard Overview
+            </a>
+            <a href="manage-tests.html" class="menu-item">
+                <i class="fa-solid fa-file-lines"></i> Manage Tests
+            </a>
+            <a href="create-test.html" class="menu-item">
+                <i class="fa-solid fa-plus-circle"></i> Create New Test
+            </a>
+            <a href="question-bank.html" class="menu-item">
+                <i class="fa-solid fa-database"></i> Question Bank
+            </a>
+            
+            <div class="menu-label" style="margin-top: 20px;">Reports</div>
+            <a href="analytics.html" class="menu-item">
+                <i class="fa-solid fa-chart-line"></i> Analytics & Results
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-users"></i> Students
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logoutAdmin()">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="page-title">Dashboard Overview</div>
+            
+            <div class="nav-actions">
+                <div class="admin-profile">
+                    <div class="avatar">A</div>
+                    <span style="font-weight: 500;">Admin User</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <div class="dashboard-body">
+            
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3 id="totalTestsCount">0</h3>
+                        <p>Total Active Tests</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>1,245</h3>
+                        <p>Total Registered Students</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>10,000+</h3>
+                        <p>Questions in Bank</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>8,432</h3>
+                        <p>Test Attempts (This Month)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Panel -->
+            <div class="card-panel">
+                <div class="card-header">
+                    <h2>Recent Tests Created</h2>
+                    <a href="manage-tests.html" class="btn-primary">View All Tests</a>
+                </div>
+                <div class="table-responsive">
+                    <table id="recentTestsTable">
+                        <thead>
+                            <tr>
+                                <th>Test Title</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Created On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" style="text-align: center;">Loading recent tests...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Check Admin Auth
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            alert('Unauthorized access. Please login as Admin.');
+            window.location.href = '../index.html';
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('adminToken');
+            window.location.href = '../index.html';
+        }
+
+        async function fetchRecentTests() {
+            try {
+                const response = await fetch(((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + '/api/papers');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const tbody = document.querySelector('#recentTestsTable tbody');
+                    tbody.innerHTML = '';
+                    
+                    document.getElementById('totalTestsCount').innerText = data.papers.length;
+
+                    // Show last 5
+                    const recent = data.papers.slice(-5).reverse();
+                    
+                    recent.forEach(paper => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td style="font-weight:500;">${paper.title}</td>
+                            <td><span class="badge badge-ssc">${paper.category.toUpperCase()}</span></td>
+                            <td>${paper.paperType}</td>
+                            <td><span class="badge badge-active">Active</span></td>
+                            <td style="color:#64748b; font-size:0.875rem;">${new Date(paper.createdAt).toLocaleDateString()}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+
+                    if (recent.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No tests found.</td></tr>';
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to fetch tests', err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchRecentTests);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockly | Live Tests — Compete in Real-Time</title>
+    <meta name="description" content="Join thousands of aspirants in real-time mock tests. Compete on All India leaderboards, win prizes, and boost your rank with Mockly Live Tests.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/live-tests.css">
+</head>
+<body>
+    <!-- Background Ambient Glows -->
+    <div class="ambient-bg">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <div class="nav-links">
+                <a href="exams.html" class="nav-item">Exams</a>
+                <a href="test-details.html" class="nav-item text-purple" style="font-weight: 600;"><i class="fa-solid fa-bolt"></i> Test Series</a>
+                <a href="live-tests.html" class="nav-item"><span class="pulse-dot-small text-red"></span> Live Tests</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon" style="display:none;"></i>
+                </button>
+                <button class="btn-ghost" id="nav-login-btn">Login</button>
+                <button class="btn-primary" id="nav-signup-btn">Sign Up Free</button>
+                
+                <div id="user-menu" style="display: none; align-items: center; gap: 15px;">
+                    <a href="dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;" title="Go to Dashboard">
+                        <img src="assets/avatars/memoji_1.webp" id="nav-avatar" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--primary-color);">
+                        <span id="user-greeting" style="font-weight: 500;"></span>
+                    </a>
+                    <button class="btn-ghost" id="nav-logout-btn" style="border: 1px solid var(--border-glass);">Logout</button>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <div class="drawer-header">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <button class="close-drawer-btn" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="exams.html" class="drawer-item" style="--anim-order: 1;"><div class="d-icon-box"><i class="fa-solid fa-layer-group"></i></div> Exams</a>
+            <a href="test-details.html" class="drawer-item" style="--anim-order: 2;"><div class="d-icon-box text-purple"><i class="fa-solid fa-bolt"></i></div> Test Series</a>
+            <a href="live-tests.html" class="drawer-item" style="--anim-order: 3;"><div class="d-icon-box text-red"><i class="fa-solid fa-tower-broadcast"></i></div> Live Tests</a>
+        </div>
+        <div class="drawer-actions">
+            <button class="btn-ghost w-100 mb-2 drawer-login-btn">Login</button>
+            <button class="btn-primary w-100 drawer-signup-btn premium-cta">Sign Up Free</button>
+        </div>
+        <div class="drawer-socials">
+            <a href="#" class="d-social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="d-social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+
+    <main class="live-tests-main">
+        <!-- 1. Live Now Holographic Hero Section -->
+        <section class="live-hero" id="liveHero">
+            <div class="live-hero-content">
+                <div class="live-badge-glow">
+                    <span class="live-dot pulse-animation"></span>
+                    <span class="live-wave-bars"><span></span><span></span><span></span></span>
+                    LIVE NOW
+                </div>
+                <h1 class="hero-title">SSC CGL Tier 1 — <span class="text-gradient">All India Weekend Mock</span></h1>
+                <p class="hero-subtitle">Compete with thousands of aspirants in real-time. Experience the exact TCS iON interface and get your All India Rank instantly.</p>
+                
+                <div class="live-stats">
+                    <div class="stat-box glass-card">
+                        <i class="fa-solid fa-users stat-icon text-blue"></i>
+                        <div class="stat-info">
+                            <span class="stat-value counter-animate" id="liveParticipants" data-target="2847">0</span>
+                            <span class="stat-label">Attempting Now</span>
+                        </div>
+                    </div>
+                    <div class="stat-box glass-card">
+                        <i class="fa-solid fa-clock stat-icon text-orange"></i>
+                        <div class="stat-info">
+                            <span class="stat-value">60 Min</span>
+                            <span class="stat-label">Duration</span>
+                        </div>
+                    </div>
+                    <div class="stat-box glass-card">
+                        <i class="fa-solid fa-bullseye stat-icon text-green"></i>
+                        <div class="stat-info">
+                            <span class="stat-value">100 Qs</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                    </div>
+                    <div class="stat-box glass-card">
+                        <i class="fa-solid fa-trophy stat-icon text-yellow"></i>
+                        <div class="stat-info">
+                            <span class="stat-value">₹10K</span>
+                            <span class="stat-label">Prize Pool</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="exam.html" class="btn-primary btn-large btn-glow pulse-animation">
+                        <i class="fa-solid fa-play"></i> Join Live Test Now
+                    </a>
+                    <button class="btn-glass btn-large" onclick="openSyllabusModal('SSC CGL Tier 1 — All India Weekend Mock')">
+                        <i class="fa-solid fa-book-open"></i> View Syllabus
+                    </button>
+                </div>
+                <div class="hero-registered">
+                    <div class="avatar-stack">
+                        <img src="assets/avatars/memoji_2.png" alt="">
+                        <img src="assets/avatars/memoji_3.png" alt="">
+                        <img src="assets/avatars/memoji_6.png" alt="">
+                        <span class="avatar-count">+4.2k</span>
+                    </div>
+                    <span class="registered-label">registered for this test</span>
+                </div>
+            </div>
+            
+            <div class="live-hero-graphic">
+                <div class="hologram-wrapper">
+                    <div class="hologram-base"></div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3176/3176294.png" alt="Trophy" class="floating-trophy">
+                    <div class="particle p1"></div>
+                    <div class="particle p2"></div>
+                    <div class="particle p3"></div>
+                    <div class="particle p4"></div>
+                    <div class="particle p5"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-Time Hype Ticker -->
+        <div class="hype-ticker-container">
+            <div class="hype-ticker" id="hypeTicker">
+                <span class="ticker-item"><i class="fa-solid fa-fire text-red"></i> 2,800+ students are competing right now!</span>
+                <span class="ticker-item"><i class="fa-solid fa-trophy text-purple"></i> Priya scored 185/200 in last week's CGL Mock</span>
+                <span class="ticker-item"><i class="fa-solid fa-bell text-orange"></i> Rahul from Delhi just joined SSC CGL Mega Mock</span>
+                <span class="ticker-item"><i class="fa-solid fa-crown text-yellow"></i> Amit unlocked Gold Tier — 5 week streak!</span>
+                <span class="ticker-item"><i class="fa-solid fa-rocket text-blue"></i> SBI PO Live Test starts in 3 hours</span>
+                <span class="ticker-item"><i class="fa-solid fa-star text-green"></i> Neha improved her rank by 1200 positions this month</span>
+                <!-- Duplicated for seamless scroll -->
+                <span class="ticker-item"><i class="fa-solid fa-fire text-red"></i> 2,800+ students are competing right now!</span>
+                <span class="ticker-item"><i class="fa-solid fa-trophy text-purple"></i> Priya scored 185/200 in last week's CGL Mock</span>
+                <span class="ticker-item"><i class="fa-solid fa-bell text-orange"></i> Rahul from Delhi just joined SSC CGL Mega Mock</span>
+                <span class="ticker-item"><i class="fa-solid fa-crown text-yellow"></i> Amit unlocked Gold Tier — 5 week streak!</span>
+            </div>
+        </div>
+
+        <!-- 2. Today's Schedule -->
+        <section class="today-schedule-section container" id="todaySchedule">
+            <div class="section-header-compact">
+                <h2><i class="fa-solid fa-calendar-day text-blue"></i> Today's <span class="text-gradient">Battle Schedule</span></h2>
+                <span class="schedule-date" id="todayDate"></span>
+            </div>
+            <div class="schedule-timeline">
+                <div class="schedule-item in-progress">
+                    <div class="schedule-time-col">
+                        <span class="schedule-time">10:00 AM</span>
+                        <span class="schedule-status-badge live"><span class="live-dot-mini"></span> In Progress</span>
+                    </div>
+                    <div class="schedule-line"><div class="schedule-dot"></div></div>
+                    <div class="schedule-details glass-card">
+                        <div class="schedule-tags">
+                            <span class="tag bg-blue">SSC CGL</span>
+                            <span class="tag bg-green">Free</span>
+                        </div>
+                        <h4>All India Weekend Mock — Tier 1</h4>
+                        <div class="schedule-meta"><span><i class="fa-solid fa-users"></i> 2,847 attempting</span><span><i class="fa-solid fa-clock"></i> 60 min</span></div>
+                        <a href="exam.html" class="btn-primary btn-sm">Join Now <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="schedule-item starting-soon">
+                    <div class="schedule-time-col">
+                        <span class="schedule-time">02:00 PM</span>
+                        <span class="schedule-status-badge soon"><i class="fa-solid fa-hourglass-half"></i> Starts in 4h</span>
+                    </div>
+                    <div class="schedule-line"><div class="schedule-dot"></div></div>
+                    <div class="schedule-details glass-card">
+                        <div class="schedule-tags">
+                            <span class="tag bg-green">SBI PO</span>
+                            <span class="tag bg-orange">PRO</span>
+                        </div>
+                        <h4>SBI PO Prelims — Speed Challenge</h4>
+                        <div class="schedule-meta"><span><i class="fa-solid fa-users"></i> 1,234 registered</span><span><i class="fa-solid fa-clock"></i> 60 min</span></div>
+                        <button class="notify-btn btn-sm" data-test="sbi-po-speed"><i class="fa-regular fa-bell"></i> Remind Me</button>
+                    </div>
+                </div>
+                <div class="schedule-item upcoming">
+                    <div class="schedule-time-col">
+                        <span class="schedule-time">06:00 PM</span>
+                        <span class="schedule-status-badge later"><i class="fa-regular fa-clock"></i> Evening</span>
+                    </div>
+                    <div class="schedule-line"><div class="schedule-dot"></div></div>
+                    <div class="schedule-details glass-card">
+                        <div class="schedule-tags">
+                            <span class="tag bg-purple">RRB NTPC</span>
+                            <span class="tag bg-green">Free</span>
+                        </div>
+                        <h4>RRB NTPC CBT-1 — Full Mock</h4>
+                        <div class="schedule-meta"><span><i class="fa-solid fa-users"></i> 890 registered</span><span><i class="fa-solid fa-clock"></i> 90 min</span></div>
+                        <button class="notify-btn btn-sm" data-test="rrb-ntpc"><i class="fa-regular fa-bell"></i> Remind Me</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Layout (Grid) -->
+        <div class="live-content-grid container">
+            
+            <!-- Left Column: Upcoming Tests -->
+            <div class="upcoming-tests-section">
+                <div class="section-header-compact">
+                    <h2>Upcoming <span class="text-gradient">Live Mocks</span></h2>
+                    <div class="filter-pills" id="filterPills">
+                        <button class="pill active" data-filter="all">All</button>
+                        <button class="pill" data-filter="ssc">SSC</button>
+                        <button class="pill" data-filter="banking">Banking</button>
+                        <button class="pill" data-filter="railways">Railways</button>
+                        <button class="pill" data-filter="teaching">Teaching</button>
+                    </div>
+                </div>
+
+                <div class="timeline-container" id="testCardsContainer">
+                    
+                    <!-- Test Card 1 -->
+                    <div class="test-card-3d glass-card animate-on-scroll" data-category="ssc">
+                        <div class="card-date-badge">
+                            <span class="month">JUN</span>
+                            <span class="day">22</span>
+                            <span class="weekday">SUN</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="perfect-sticker sticker-gold">
+                                <i class="fa-solid fa-certificate"></i> TCS Pattern Verified
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag bg-blue">SSC CHSL</span>
+                                <span class="tag bg-purple">Free for All</span>
+                            </div>
+                            <h3>Mega Mock Challenge: CHSL Tier 1</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-list-check"></i> 100 Qs</span>
+                                <span><i class="fa-regular fa-clock"></i> 60 Mins</span>
+                                <span><i class="fa-solid fa-language"></i> Eng / Hindi</span>
+                            </div>
+                            <div class="card-difficulty">
+                                <span class="difficulty-label">Difficulty:</span>
+                                <div class="difficulty-meter">
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar"></span>
+                                    <span class="diff-bar"></span>
+                                </div>
+                                <span class="difficulty-text moderate">Moderate</span>
+                            </div>
+                            <div class="reward-pool">
+                                <i class="fa-solid fa-gift text-orange"></i> Top 50 get 1 Month PRO Pass
+                            </div>
+                            <div class="card-bottom-row">
+                                <div class="card-registered">
+                                    <div class="avatar-stack-sm">
+                                        <img src="assets/avatars/memoji_2.png" alt="">
+                                        <img src="assets/avatars/memoji_3.png" alt="">
+                                        <img src="assets/avatars/memoji_6.png" alt="">
+                                    </div>
+                                    <span class="registered-text">3.8k registered</span>
+                                </div>
+                                <button class="share-btn" title="Share this test"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="countdown-timer" data-target-date="2026-06-22T10:00:00">
+                                <div class="time-block"><span class="cd-days">02</span><small>Days</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-hours">14</span><small>Hrs</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-mins">33</span><small>Mins</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-secs">00</span><small>Secs</small></div>
+                            </div>
+                            <button class="notify-btn" data-test="chsl-mega"><i class="fa-regular fa-bell"></i> Notify Me</button>
+                        </div>
+                    </div>
+
+                    <!-- Test Card 2 -->
+                    <div class="test-card-3d glass-card animate-on-scroll" data-category="banking">
+                        <div class="card-date-badge">
+                            <span class="month">JUN</span>
+                            <span class="day">25</span>
+                            <span class="weekday">WED</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="perfect-sticker sticker-purple">
+                                <i class="fa-solid fa-star"></i> Toppers' Choice
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag bg-green">SBI PO</span>
+                                <span class="tag bg-orange">PRO Only</span>
+                            </div>
+                            <h3>SBI PO Prelims — All India Live</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-list-check"></i> 100 Qs</span>
+                                <span><i class="fa-regular fa-clock"></i> 60 Mins</span>
+                                <span><i class="fa-solid fa-language"></i> Eng / Hindi</span>
+                            </div>
+                            <div class="card-difficulty">
+                                <span class="difficulty-label">Difficulty:</span>
+                                <div class="difficulty-meter">
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar"></span>
+                                </div>
+                                <span class="difficulty-text hard">Hard</span>
+                            </div>
+                            <div class="reward-pool">
+                                <i class="fa-solid fa-medal text-purple"></i> Win Amazon Vouchers worth ₹5,000
+                            </div>
+                            <div class="card-bottom-row">
+                                <div class="card-registered">
+                                    <div class="avatar-stack-sm">
+                                        <img src="assets/avatars/memoji_1.png" alt="">
+                                        <img src="assets/avatars/memoji_2.png" alt="">
+                                        <img src="assets/avatars/memoji_3.png" alt="">
+                                    </div>
+                                    <span class="registered-text">5.1k registered</span>
+                                </div>
+                                <div class="pro-lock-badge"><i class="fa-solid fa-lock"></i> PRO</div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="countdown-timer" data-target-date="2026-06-25T14:00:00">
+                                <div class="time-block"><span class="cd-days">05</span><small>Days</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-hours">09</span><small>Hrs</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-mins">12</span><small>Mins</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-secs">00</span><small>Secs</small></div>
+                            </div>
+                            <button class="notify-btn" data-test="sbi-po-live"><i class="fa-regular fa-bell"></i> Notify Me</button>
+                        </div>
+                    </div>
+
+                    <!-- Test Card 3 -->
+                    <div class="test-card-3d glass-card animate-on-scroll" data-category="railways">
+                        <div class="card-date-badge">
+                            <span class="month">JUN</span>
+                            <span class="day">28</span>
+                            <span class="weekday">SAT</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="perfect-sticker sticker-green">
+                                <i class="fa-solid fa-bolt"></i> New Pattern
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag bg-purple">RRB NTPC</span>
+                                <span class="tag bg-purple">Free for All</span>
+                            </div>
+                            <h3>RRB NTPC CBT-1 — Weekend Blitz</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-list-check"></i> 100 Qs</span>
+                                <span><i class="fa-regular fa-clock"></i> 90 Mins</span>
+                                <span><i class="fa-solid fa-language"></i> Eng / Hindi</span>
+                            </div>
+                            <div class="card-difficulty">
+                                <span class="difficulty-label">Difficulty:</span>
+                                <div class="difficulty-meter">
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar"></span>
+                                    <span class="diff-bar"></span>
+                                    <span class="diff-bar"></span>
+                                </div>
+                                <span class="difficulty-text easy">Easy-Moderate</span>
+                            </div>
+                            <div class="reward-pool">
+                                <i class="fa-solid fa-award text-green"></i> All participants get AI Weakness Report
+                            </div>
+                            <div class="card-bottom-row">
+                                <div class="card-registered">
+                                    <div class="avatar-stack-sm">
+                                        <img src="assets/avatars/memoji_6.png" alt="">
+                                        <img src="assets/avatars/memoji_1.png" alt="">
+                                        <img src="assets/avatars/memoji_2.png" alt="">
+                                    </div>
+                                    <span class="registered-text">2.1k registered</span>
+                                </div>
+                                <button class="share-btn" title="Share this test"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="countdown-timer" data-target-date="2026-06-28T18:00:00">
+                                <div class="time-block"><span class="cd-days">08</span><small>Days</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-hours">12</span><small>Hrs</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-mins">45</span><small>Mins</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-secs">00</span><small>Secs</small></div>
+                            </div>
+                            <button class="notify-btn" data-test="rrb-ntpc-blitz"><i class="fa-regular fa-bell"></i> Notify Me</button>
+                        </div>
+                    </div>
+
+                    <!-- Test Card 4 -->
+                    <div class="test-card-3d glass-card animate-on-scroll" data-category="teaching">
+                        <div class="card-date-badge">
+                            <span class="month">JUL</span>
+                            <span class="day">02</span>
+                            <span class="weekday">WED</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tags">
+                                <span class="tag bg-orange">CTET</span>
+                                <span class="tag bg-green">Free</span>
+                            </div>
+                            <h3>CTET Paper 1 — Full Length Mock</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-list-check"></i> 150 Qs</span>
+                                <span><i class="fa-regular fa-clock"></i> 150 Mins</span>
+                                <span><i class="fa-solid fa-language"></i> Eng / Hindi</span>
+                            </div>
+                            <div class="card-difficulty">
+                                <span class="difficulty-label">Difficulty:</span>
+                                <div class="difficulty-meter">
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar filled"></span>
+                                    <span class="diff-bar"></span>
+                                    <span class="diff-bar"></span>
+                                    <span class="diff-bar"></span>
+                                </div>
+                                <span class="difficulty-text easy">Easy</span>
+                            </div>
+                            <div class="reward-pool">
+                                <i class="fa-solid fa-gift text-orange"></i> Top 100 get 1 Week PRO Pass
+                            </div>
+                            <div class="card-bottom-row">
+                                <div class="card-registered">
+                                    <div class="avatar-stack-sm">
+                                        <img src="assets/avatars/memoji_3.png" alt="">
+                                        <img src="assets/avatars/memoji_6.png" alt="">
+                                    </div>
+                                    <span class="registered-text">980 registered</span>
+                                </div>
+                                <button class="share-btn" title="Share this test"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="countdown-timer" data-target-date="2026-07-02T10:00:00">
+                                <div class="time-block"><span class="cd-days">12</span><small>Days</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-hours">04</span><small>Hrs</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-mins">50</span><small>Mins</small></div><span class="cd-sep">:</span>
+                                <div class="time-block"><span class="cd-secs">00</span><small>Secs</small></div>
+                            </div>
+                            <button class="notify-btn" data-test="ctet-p1"><i class="fa-regular fa-bell"></i> Notify Me</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Fair Play / Anti-Cheat Section -->
+                <div class="fair-play-section mt-5 glass-card animate-on-scroll">
+                    <div class="fair-play-icon"><i class="fa-solid fa-shield-halved text-green"></i></div>
+                    <div class="fair-play-content">
+                        <h3>100% Fair Play Guarantee</h3>
+                        <p>Our Live Tests use strict AI-powered Web Proctoring. Tab switching, copy-pasting, and screen capture are monitored. Cheaters are instantly banned from the Global Leaderboard.</p>
+                    </div>
+                    <div class="fair-play-features">
+                        <span><i class="fa-solid fa-eye"></i> Tab Monitoring</span>
+                        <span><i class="fa-solid fa-ban"></i> Copy Blocked</span>
+                        <span><i class="fa-solid fa-robot"></i> AI Proctor</span>
+                    </div>
+                </div>
+
+                <!-- Past Live Mocks Archive -->
+                <div class="archive-section mt-5 animate-on-scroll">
+                    <div class="section-header-compact">
+                        <h2>Past <span class="text-gradient">Live Mocks</span></h2>
+                        <a href="#" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="archive-grid">
+                        <div class="archive-card glass-card">
+                            <div class="archive-badge"><i class="fa-solid fa-check-circle text-green"></i> Completed</div>
+                            <h4>SSC CGL Tier 1 (Jun 15)</h4>
+                            <div class="archive-meta">
+                                <span><i class="fa-solid fa-users text-blue"></i> 45k+ Attempted</span>
+                                <span><i class="fa-solid fa-trophy text-yellow"></i> Avg: 132/200</span>
+                            </div>
+                            <button class="re-attempt-btn mt-2"><i class="fa-solid fa-rotate-right"></i> Re-attempt</button>
+                        </div>
+                        <div class="archive-card glass-card">
+                            <div class="archive-badge"><i class="fa-solid fa-check-circle text-green"></i> Completed</div>
+                            <h4>RRB NTPC Mega (Jun 08)</h4>
+                            <div class="archive-meta">
+                                <span><i class="fa-solid fa-users text-blue"></i> 32k+ Attempted</span>
+                                <span><i class="fa-solid fa-trophy text-yellow"></i> Avg: 128/200</span>
+                            </div>
+                            <button class="re-attempt-btn mt-2"><i class="fa-solid fa-rotate-right"></i> Re-attempt</button>
+                        </div>
+                        <div class="archive-card glass-card">
+                            <div class="archive-badge"><i class="fa-solid fa-check-circle text-green"></i> Completed</div>
+                            <h4>SBI Clerk Prelims (Jun 01)</h4>
+                            <div class="archive-meta">
+                                <span><i class="fa-solid fa-users text-blue"></i> 28k+ Attempted</span>
+                                <span><i class="fa-solid fa-trophy text-yellow"></i> Avg: 68/100</span>
+                            </div>
+                            <button class="re-attempt-btn mt-2"><i class="fa-solid fa-rotate-right"></i> Re-attempt</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Leaderboard & Gamification -->
+            <aside class="leaderboard-sidebar">
+                
+                <!-- Live Elo Profile -->
+                <div class="glass-card elo-card animate-on-scroll">
+                    <div class="elo-header">
+                        <img src="assets/avatars/memoji_1.png" alt="Your Profile" class="elo-avatar">
+                        <div class="elo-info">
+                            <h4>Your Live Rating</h4>
+                            <div class="elo-rating">1450 <span class="elo-tier text-bronze">Bronze</span></div>
+                        </div>
+                    </div>
+                    <div class="elo-progress-container mt-3">
+                        <div class="elo-progress-bar">
+                            <div class="fill bg-silver" style="width: 70%;"></div>
+                        </div>
+                        <div class="elo-meta">
+                            <span><i class="fa-solid fa-arrow-trend-up text-green"></i> +12 this week</span>
+                            <span>50 pts to Silver</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Your Stats Card -->
+                <div class="glass-card your-stats-card animate-on-scroll">
+                    <h3><i class="fa-solid fa-chart-column text-blue"></i> Your Battle Stats</h3>
+                    <div class="stats-grid">
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">24</div>
+                            <div class="mini-stat-label">Tests Taken</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">78%</div>
+                            <div class="mini-stat-label">Avg Accuracy</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">#42</div>
+                            <div class="mini-stat-label">Best Rank</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">5 🔥</div>
+                            <div class="mini-stat-label">Week Streak</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Podium Leaderboard -->
+                <div class="glass-card leaderboard-card animate-on-scroll">
+                    <div class="leaderboard-header">
+                        <h3><i class="fa-solid fa-crown text-yellow"></i> Hall of Fame</h3>
+                        <p>Last Week's CGL Mega Mock</p>
+                    </div>
+                    
+                    <!-- Podium -->
+                    <div class="podium-container">
+                        <div class="podium-item podium-2">
+                            <img src="assets/avatars/memoji_3.png" alt="Rank 2" class="podium-avatar">
+                            <div class="podium-name">Priya S.</div>
+                            <div class="podium-score">182.0</div>
+                            <div class="podium-pedestal silver"><span>2</span></div>
+                        </div>
+                        <div class="podium-item podium-1">
+                            <div class="podium-crown"><i class="fa-solid fa-crown"></i></div>
+                            <img src="assets/avatars/memoji_2.png" alt="Rank 1" class="podium-avatar">
+                            <div class="podium-name">Vikash K.</div>
+                            <div class="podium-score">185.5</div>
+                            <div class="podium-pedestal gold"><span>1</span></div>
+                        </div>
+                        <div class="podium-item podium-3">
+                            <img src="assets/avatars/memoji_6.png" alt="Rank 3" class="podium-avatar">
+                            <div class="podium-name">Ankit V.</div>
+                            <div class="podium-score">179.5</div>
+                            <div class="podium-pedestal bronze"><span>3</span></div>
+                        </div>
+                    </div>
+
+                    <div class="leaderboard-list">
+                        <div class="rank-item">
+                            <div class="rank-num">4</div>
+                            <div class="rank-details"><h4>Sneha Gupta</h4><span>177.0 / 200</span></div>
+                        </div>
+                        <div class="rank-item">
+                            <div class="rank-num">5</div>
+                            <div class="rank-details"><h4>Ravi Patel</h4><span>175.5 / 200</span></div>
+                        </div>
+                        <div class="rank-item your-rank">
+                            <div class="rank-num">42</div>
+                            <div class="rank-details"><h4>You</h4><span>152.0 / 200</span></div>
+                            <span class="your-rank-badge">Your Rank</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-ghost w-100 mt-3">View Full Leaderboard <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Achievement Badges -->
+                <div class="glass-card badges-card animate-on-scroll">
+                    <h3><i class="fa-solid fa-medal text-orange"></i> Achievements</h3>
+                    <div class="badges-grid">
+                        <div class="badge-item earned" title="Complete 5 Live Tests">
+                            <div class="badge-icon"><i class="fa-solid fa-fire"></i></div>
+                            <span>Streak Master</span>
+                        </div>
+                        <div class="badge-item earned" title="Score 90%+ accuracy">
+                            <div class="badge-icon"><i class="fa-solid fa-bullseye"></i></div>
+                            <span>Sharpshooter</span>
+                        </div>
+                        <div class="badge-item earned" title="Finish in top 10%">
+                            <div class="badge-icon"><i class="fa-solid fa-bolt"></i></div>
+                            <span>Speed Demon</span>
+                        </div>
+                        <div class="badge-item locked" title="Win 3 Live Tests">
+                            <div class="badge-icon"><i class="fa-solid fa-crown"></i></div>
+                            <span>Champion</span>
+                        </div>
+                        <div class="badge-item locked" title="Attempt 50 Live Tests">
+                            <div class="badge-icon"><i class="fa-solid fa-dragon"></i></div>
+                            <span>Legend</span>
+                        </div>
+                        <div class="badge-item locked" title="Maintain 10 week streak">
+                            <div class="badge-icon"><i class="fa-solid fa-gem"></i></div>
+                            <span>Diamond</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gamification / Rewards Banner -->
+                <div class="gamification-banner glass-card animate-on-scroll">
+                    <div class="g-icon"><i class="fa-solid fa-gem text-blue"></i></div>
+                    <h3>Unlock Premium Rewards</h3>
+                    <p style="margin-bottom: 15px;">Compete in weekend mocks to win big!</p>
+                    
+                    <div class="tier-rewards-3d">
+                        <div class="tier-item-3d gold-tier">
+                            <div class="tier-icon-3d"><i class="fa-solid fa-trophy"></i></div>
+                            <div class="tier-info-3d">
+                                <h4>Rank 1-3</h4>
+                                <p>100% Scholarship + Echo Dot</p>
+                            </div>
+                        </div>
+                        <div class="tier-item-3d silver-tier">
+                            <div class="tier-icon-3d"><i class="fa-solid fa-medal"></i></div>
+                            <div class="tier-info-3d">
+                                <h4>Rank 4-50</h4>
+                                <p>1 Year Mockly PRO Pass</p>
+                            </div>
+                        </div>
+                        <div class="tier-item-3d bronze-tier">
+                            <div class="tier-icon-3d"><i class="fa-solid fa-award"></i></div>
+                            <div class="tier-info-3d">
+                                <h4>Rank 51-500</h4>
+                                <p>Detailed AI Weakness Report</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works-section container animate-on-scroll">
+            <h2 class="text-center">How <span class="text-gradient">Live Tests</span> Work</h2>
+            <p class="section-subtitle text-center">Three simple steps to compete with the best</p>
+            <div class="steps-container">
+                <div class="step-card glass-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fa-solid fa-user-plus"></i></div>
+                    <h4>Register & Get Ready</h4>
+                    <p>Click 'Notify Me' on any upcoming test. You'll receive a reminder 15 minutes before the test starts.</p>
+                </div>
+                <div class="step-connector"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="step-card glass-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h4>Compete in Real-Time</h4>
+                    <p>Take the test on our TCS iON-identical interface alongside thousands of aspirants — at the exact same time.</p>
+                </div>
+                <div class="step-connector"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="step-card glass-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fa-solid fa-ranking-star"></i></div>
+                    <h4>Win & Climb Ranks</h4>
+                    <p>Get your All India Rank instantly, earn Elo rating points, unlock badges, and win prizes!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section container animate-on-scroll">
+            <h2 class="text-center">What <span class="text-gradient">Top Rankers</span> Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-header">
+                        <img src="assets/avatars/memoji_2.png" alt="Vikash" class="testimonial-avatar">
+                        <div>
+                            <h4>Vikash Kumar</h4>
+                            <span class="testimonial-role">SSC CGL 2025 — AIR 34</span>
+                        </div>
+                        <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <p>"Mockly's Live Tests are game-changing. The real-time competition pushed me to solve faster. My speed improved by 40% in just 2 months of weekend mocks."</p>
+                    <div class="testimonial-stat">
+                        <span class="text-green"><i class="fa-solid fa-arrow-trend-up"></i> +40% Speed</span>
+                        <span class="text-blue"><i class="fa-solid fa-trophy"></i> 24 Live Tests</span>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-header">
+                        <img src="assets/avatars/memoji_3.png" alt="Priya" class="testimonial-avatar">
+                        <div>
+                            <h4>Priya Sharma</h4>
+                            <span class="testimonial-role">SBI PO 2025 — Selected</span>
+                        </div>
+                        <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <p>"The AI Weakness Report after each live test pinpointed exactly where I was losing marks. I went from scoring 55/100 to consistently hitting 85+."</p>
+                    <div class="testimonial-stat">
+                        <span class="text-green"><i class="fa-solid fa-arrow-trend-up"></i> 55→85 Score</span>
+                        <span class="text-purple"><i class="fa-solid fa-crown"></i> Gold Tier</span>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-header">
+                        <img src="assets/avatars/memoji_6.png" alt="Ankit" class="testimonial-avatar">
+                        <div>
+                            <h4>Ankit Verma</h4>
+                            <span class="testimonial-role">RRB NTPC 2025 — AIR 127</span>
+                        </div>
+                        <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    </div>
+                    <p>"The exam-day pressure simulation in live tests helped me stay calm during my actual NTPC exam. No other platform offers this level of realism."</p>
+                    <div class="testimonial-stat">
+                        <span class="text-green"><i class="fa-solid fa-arrow-trend-up"></i> AIR 127</span>
+                        <span class="text-orange"><i class="fa-solid fa-fire"></i> 12 Week Streak</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-glow-line"></div>
+        <div class="footer-content">
+            <div class="footer-brand-section">
+                <a href="#" class="brand footer-brand-logo">
+                    <div class="logo-mark">M</div>
+                    <span class="brand-text">Mockly</span>
+                </a>
+                <p class="footer-desc">India's most technologically advanced test series platform. Train on the exact real-exam interface and claim your unfair advantage.</p>
+                <div class="social-links-premium">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-section">
+                <div class="footer-link-group">
+                    <h4>Top Exams</h4>
+                    <a href="#">SSC CGL Test Series</a>
+                    <a href="#">SBI PO Mock Test</a>
+                    <a href="#">RRB NTPC Mocks</a>
+                    <a href="#">UPSC Prelims</a>
+                    <a href="#">CTET Paper 1</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Study Resources</h4>
+                    <a href="#">Free PDF Notes</a>
+                    <a href="#">Exam Syllabus</a>
+                    <a href="#">Previous Year Papers</a>
+                    <a href="#">Topper Strategies</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Platform</h4>
+                    <a href="#">Mockly Pass PRO</a>
+                    <a href="#">AI Analytics</a>
+                    <a href="#">TCS Interface</a>
+                    <a href="#">Pricing</a>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Ahead</h4>
+                    <p>Get the latest exam alerts and daily GK updates delivered straight to your inbox.</p>
+                    <form class="premium-newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <div class="app-downloads-mini">
+                        <p>Get the App</p>
+                        <div class="dl-buttons">
+                            <a href="#"><i class="fa-brands fa-google-play"></i></a>
+                            <a href="#"><i class="fa-brands fa-apple"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2026 Mockly Premium. All rights reserved.
+            </div>
+            <div class="footer-legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Syllabus Modal -->
+    <div id="syllabus-modal" class="auth-overlay" style="display: none;">
+        <button id="close-syllabus" class="auth-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="syllabus-container glass-card">
+            <div class="syllabus-header">
+                <h2><i class="fa-solid fa-wand-magic-sparkles text-purple"></i> AI Predicted Syllabus</h2>
+                <p id="modal-test-title">Test Title</p>
+            </div>
+            <div class="syllabus-body">
+                <div class="syllabus-section">
+                    <h4><i class="fa-solid fa-calculator text-blue"></i> Quantitative Aptitude</h4>
+                    <ul>
+                        <li><span class="topic-name">Advanced Math (Geometry, Trig)</span> <span class="difficulty hard">Hard</span></li>
+                        <li><span class="topic-name">Data Interpretation</span> <span class="difficulty medium">Medium</span></li>
+                        <li><span class="topic-name">Arithmetic</span> <span class="difficulty easy">Easy</span></li>
+                    </ul>
+                </div>
+                <div class="syllabus-section">
+                    <h4><i class="fa-solid fa-brain text-purple"></i> Reasoning</h4>
+                    <ul>
+                        <li><span class="topic-name">Puzzles & Seating</span> <span class="difficulty hard">Hard</span></li>
+                        <li><span class="topic-name">Syllogism</span> <span class="difficulty medium">Medium</span></li>
+                        <li><span class="topic-name">Coding-Decoding</span> <span class="difficulty easy">Easy</span></li>
+                    </ul>
+                </div>
+                <div class="syllabus-section">
+                    <h4><i class="fa-solid fa-language text-green"></i> English Comprehension</h4>
+                    <ul>
+                        <li><span class="topic-name">Reading Comprehension</span> <span class="difficulty medium">Medium</span></li>
+                        <li><span class="topic-name">Vocab (Synonyms/Antonyms)</span> <span class="difficulty medium">Medium</span></li>
+                        <li><span class="topic-name">Error Detection</span> <span class="difficulty easy">Easy</span></li>
+                    </ul>
+                </div>
+                <div class="syllabus-section">
+                    <h4><i class="fa-solid fa-landmark text-orange"></i> General Awareness</h4>
+                    <ul>
+                        <li><span class="topic-name">Current Affairs (Last 6 Months)</span> <span class="difficulty medium">Medium</span></li>
+                        <li><span class="topic-name">Static GK</span> <span class="difficulty easy">Easy</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="syllabus-footer">
+                <button class="btn-primary w-100" onclick="window.location.href='exam.html'"><i class="fa-solid fa-play"></i> Enter Live Test</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // ========================
+        // LIVE TESTS PAGE JS
+        // ========================
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. REAL COUNTDOWN TIMERS ---
+            function updateCountdowns() {
+                document.querySelectorAll('.countdown-timer[data-target-date]').forEach(timer => {
+                    const target = new Date(timer.dataset.targetDate).getTime();
+                    const now = Date.now();
+                    const diff = target - now;
+
+                    if (diff <= 0) {
+                        timer.innerHTML = '<span class="cd-expired">Test Started!</span>';
+                        return;
+                    }
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    const dEl = timer.querySelector('.cd-days');
+                    const hEl = timer.querySelector('.cd-hours');
+                    const mEl = timer.querySelector('.cd-mins');
+                    const sEl = timer.querySelector('.cd-secs');
+
+                    if (dEl) dEl.textContent = String(days).padStart(2, '0');
+                    if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+                    if (mEl) mEl.textContent = String(mins).padStart(2, '0');
+                    if (sEl) sEl.textContent = String(secs).padStart(2, '0');
+                });
+            }
+            updateCountdowns();
+            setInterval(updateCountdowns, 1000);
+
+            // --- 2. ANIMATED PARTICIPANT COUNTER ---
+            const participantEl = document.getElementById('liveParticipants');
+            if (participantEl) {
+                const target = parseInt(participantEl.dataset.target);
+                let current = 0;
+                const duration = 2000;
+                const step = target / (duration / 16);
+
+                function animateCounter() {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        participantEl.textContent = target.toLocaleString();
+                        // After reaching target, simulate live increments
+                        setInterval(() => {
+                            const increment = Math.floor(Math.random() * 5) + 1;
+                            current += increment;
+                            participantEl.textContent = Math.floor(current).toLocaleString();
+                        }, 3000 + Math.random() * 4000);
+                        return;
+                    }
+                    participantEl.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(animateCounter);
+                }
+
+                // Start counter animation when hero is visible
+                const heroObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounter();
+                            heroObserver.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                heroObserver.observe(document.getElementById('liveHero'));
+            }
+
+            // --- 3. FILTER PILLS ---
+            const filterPills = document.getElementById('filterPills');
+            const testCards = document.querySelectorAll('.test-card-3d[data-category]');
+
+            if (filterPills) {
+                filterPills.addEventListener('click', (e) => {
+                    const pill = e.target.closest('.pill');
+                    if (!pill) return;
+
+                    filterPills.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+
+                    const filter = pill.dataset.filter;
+
+                    testCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = '';
+                            card.style.animation = 'fadeSlideIn 0.4s ease forwards';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // --- 4. NOTIFY BUTTONS ---
+            document.querySelectorAll('.notify-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    if (this.classList.contains('active')) {
+                        this.innerHTML = '<i class="fa-solid fa-bell"></i> Notified!';
+                        this.style.background = 'rgba(168, 85, 247, 0.2)';
+                        this.style.borderColor = 'var(--primary)';
+                        this.style.color = '#a855f7';
+                        showToast('You will be notified before this test starts!', 'success');
+                    } else {
+                        this.innerHTML = '<i class="fa-regular fa-bell"></i> Notify Me';
+                        this.style.background = '';
+                        this.style.borderColor = '';
+                        this.style.color = '';
+                        showToast('Notification removed.', 'info');
+                    }
+                });
+            });
+
+            // --- 5. SHARE BUTTONS ---
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.test-card-3d');
+                    const title = card ? card.querySelector('h3')?.textContent : 'Mockly Live Test';
+                    const shareText = `Join me on Mockly Live Test: ${title}! Compete with thousands of aspirants. ${window.location.href}`;
+
+                    if (navigator.share) {
+                        navigator.share({ title: 'Mockly Live Test', text: shareText, url: window.location.href });
+                    } else if (navigator.clipboard) {
+                        navigator.clipboard.writeText(shareText).then(() => {
+                            showToast('Link copied to clipboard!', 'success');
+                        });
+                    }
+                });
+            });
+
+            // --- 6. TOAST NOTIFICATION SYSTEM ---
+            function showToast(message, type = 'info') {
+                const container = document.getElementById('toast-container');
+                if (!container) return;
+
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+
+                const icons = { success: 'fa-check-circle', error: 'fa-times-circle', info: 'fa-info-circle', warning: 'fa-exclamation-triangle' };
+                toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i> <span>${message}</span>`;
+
+                container.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('show'));
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.addEventListener('transitionend', () => toast.remove());
+                }, 3500);
+            }
+
+            // --- 7. SCROLL ANIMATIONS ---
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // --- 8. TODAY'S DATE ---
+            const dateEl = document.getElementById('todayDate');
+            if (dateEl) {
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                dateEl.textContent = new Date().toLocaleDateString('en-IN', options);
+            }
+
+            // --- 9. SYLLABUS MODAL ---
+            const syllabusModal = document.getElementById('syllabus-modal');
+            const closeSyllabusBtn = document.getElementById('close-syllabus');
+            const modalTestTitle = document.getElementById('modal-test-title');
+
+            window.openSyllabusModal = function(title) {
+                if (modalTestTitle) modalTestTitle.textContent = title;
+                if (syllabusModal) syllabusModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
+
+            if (closeSyllabusBtn) {
+                closeSyllabusBtn.addEventListener('click', () => {
+                    syllabusModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+
+            if (syllabusModal) {
+                syllabusModal.addEventListener('click', (e) => {
+                    if (e.target === syllabusModal) {
+                        syllabusModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+
+            // --- 10. BADGE TOOLTIPS ---
+            document.querySelectorAll('.badge-item').forEach(badge => {
+                badge.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.05)';
+                });
+                badge.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

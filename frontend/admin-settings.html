@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Settings | Admin | Mockly</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
+        
+        .container { max-width: 900px; margin: 100px auto 40px auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #333; font-family: 'Outfit', sans-serif; margin-bottom: 5px; }
+        .subtitle { color: #666; margin-bottom: 30px; }
+        
+        /* Glassmorphism */
+        .glass-container {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .settings-group {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .settings-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .setting-info h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .setting-info p {
+            margin: 0;
+            color: #777;
+            font-size: 0.9rem;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        /* Toggle Switch CSS */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #6366f1;
+        }
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-top: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .btn-save {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-save:hover {
+            background: #4f46e5;
+        }
+        .btn-save:active {
+            transform: scale(0.98);
+        }
+        
+        #statusMessage {
+            margin-left: 15px;
+            font-weight: 500;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="glass-nav">
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <div class="nav-links">
+                <a href="exams.html" class="nav-item">Exams</a>
+                <a href="test-details.html" class="nav-item text-purple" style="font-weight: 600;"><i class="fa-solid fa-bolt"></i> Test Series</a>
+                <a href="live-tests.html" class="nav-item"><span class="pulse-dot-small text-red"></span> Live Tests</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon" style="display:none;"></i>
+                </button>
+                <button class="btn-ghost" id="nav-login-btn">Login</button>
+                <button class="btn-primary" id="nav-signup-btn">Sign Up Free</button>
+                
+                <div id="user-menu" style="display: none; align-items: center; gap: 15px;">
+                    <a href="dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;" title="Go to Dashboard">
+                        <img src="assets/avatars/memoji_1.webp" id="nav-avatar" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--primary-color);">
+                        <span id="user-greeting" style="font-weight: 500;"></span>
+                    </a>
+                    <button class="btn-ghost" id="nav-logout-btn" style="border: 1px solid var(--border-glass);">Logout</button>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <div class="drawer-header">
+            <a href="#" class="brand">
+                <div class="logo-mark">M</div>
+                <span class="brand-text">Mockly</span>
+            </a>
+            <button class="close-drawer-btn" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="exams.html" class="drawer-item" style="--anim-order: 1;"><div class="d-icon-box"><i class="fa-solid fa-layer-group"></i></div> Exams</a>
+            <a href="test-details.html" class="drawer-item" style="--anim-order: 2;"><div class="d-icon-box text-purple"><i class="fa-solid fa-bolt"></i></div> Test Series</a>
+            <a href="live-tests.html" class="drawer-item" style="--anim-order: 3;"><div class="d-icon-box text-red"><i class="fa-solid fa-tower-broadcast"></i></div> Live Tests</a>
+        </div>
+        <div class="drawer-actions">
+            <button class="btn-ghost w-100 mb-2 drawer-login-btn">Login</button>
+            <button class="btn-primary w-100 drawer-signup-btn premium-cta">Sign Up Free</button>
+        </div>
+        <div class="drawer-socials">
+            <a href="#" class="d-social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="d-social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+
+<div class="container glass-container">
+    <h1>Platform Settings</h1>
+    <p class="subtitle">Manage global configurations, site status, and banners.</p>
+
+    <div class="settings-group">
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Maintenance Mode</h3>
+                <p>When active, the site will be temporarily disabled for regular users. Only admins will be able to log in and bypass the maintenance screen.</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="maintenanceMode">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Allow New Registrations</h3>
+                <p>Toggle this off to temporarily prevent new users from signing up on the platform. Existing users can still log in.</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="allowRegistrations">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="settings-group">
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Global Announcement Banner</h3>
+                <p>Display a prominent banner across the top of the user dashboard to announce sales, new features, or important updates.</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="globalBannerActive">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="globalBannerText">Banner Text</label>
+            <input type="text" id="globalBannerText" placeholder="e.g. 🚀 50% off Premium this weekend with code MOCKLY50!">
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; display: flex; align-items: center;">
+        <button class="btn-save" onclick="saveSettings()">
+            <i class="fa-solid fa-floppy-disk"></i> Save Settings
+        </button>
+        <span id="statusMessage"></span>
+    </div>
+</div>
+
+<script>
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+        alert('Unauthorized access. Please login as Admin.');
+        window.location.href = 'index.html';
+    }
+
+    async function fetchSettings() {
+        try {
+            const res = await fetch(((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + '/api/settings');
+            const data = await res.json();
+            
+            if (data.success && data.settings) {
+                document.getElementById('maintenanceMode').checked = data.settings.maintenanceMode;
+                document.getElementById('allowRegistrations').checked = data.settings.allowRegistrations;
+                document.getElementById('globalBannerActive').checked = data.settings.globalBannerActive;
+                document.getElementById('globalBannerText').value = data.settings.globalBannerText || '';
+            }
+        } catch (err) {
+            console.error('Error fetching settings:', err);
+            showStatus('Failed to load settings from server.', 'red');
+        }
+    }
+
+    async function saveSettings() {
+        const btn = document.querySelector('.btn-save');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+        const maintenanceMode = document.getElementById('maintenanceMode').checked;
+        const allowRegistrations = document.getElementById('allowRegistrations').checked;
+        const globalBannerActive = document.getElementById('globalBannerActive').checked;
+        const globalBannerText = document.getElementById('globalBannerText').value;
+
+        try {
+            const res = await fetch(((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + '/api/settings', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': token
+                },
+                body: JSON.stringify({
+                    maintenanceMode,
+                    allowRegistrations,
+                    globalBannerActive,
+                    globalBannerText
+                })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showStatus('Settings saved successfully!', 'green');
+            } else {
+                showStatus(data.msg || 'Error saving settings.', 'red');
+            }
+        } catch (err) {
+            console.error('Error saving settings:', err);
+            showStatus('Network error while saving.', 'red');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save Settings';
+        }
+    }
+
+    function showStatus(msg, color) {
+        const statusEl = document.getElementById('statusMessage');
+        statusEl.innerText = msg;
+        statusEl.style.color = color;
+        statusEl.style.display = 'inline';
+        
+        setTimeout(() => {
+            statusEl.style.display = 'none';
+        }, 3000);
+    }
+
+    // Initial load
+    fetchSettings();
+</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC CGL Mock Tests & PYP | Mockly</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/ssc-cgl.css">
+</head>
+<body>
+
+    <header class="ssc-header">
+        <h1>SSC CGL Ultimate Test Series</h1>
+        <p>1000+ Mocks • 100,000+ Questions • Exact TCS Interface</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Categories Grid -->
+        <div class="category-grid" id="categoryGrid">
+            
+            <div class="glass-card">
+                <div class="badge">Hot</div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <h3>Full Length Mocks</h3>
+                <p>Experience the exact TCS exam environment with 100 questions in 60 minutes for Tier 1.</p>
+                <button class="btn-explore" onclick="loadPapers('Full Length Mock')">
+                    Explore Tests <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                </div>
+                <h3>Sectional Tests</h3>
+                <p>Master specific sections like Quant, Reasoning, English, or GA with targeted 25-question mocks.</p>
+                <button class="btn-explore" onclick="loadPapers('Sectional')">
+                    Explore Tests <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <h3>Topic/Chapter-wise</h3>
+                <p>Weak in Geometry or History? Take micro-tests focused purely on specific chapters and topics.</p>
+                <button class="btn-explore" onclick="loadPapers('Chapter-wise')">
+                    Explore Tests <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="glass-card">
+                <div class="badge">Must Do</div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <h3>Previous Year Papers</h3>
+                <p>Attempt the exact papers that appeared in previous years, exactly as they were presented.</p>
+                <button class="btn-explore" onclick="loadPapers('PYP')">
+                    Explore Tests <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Papers List Container (Hidden by default) -->
+        <div class="papers-list-wrapper" id="papersListWrapper" style="display: none;">
+            <button class="btn-explore" style="width: auto; margin-bottom: 2rem; background: rgba(255,255,255,0.1);" onclick="showCategories()">
+                <i class="fa-solid fa-arrow-left"></i> Back to Categories
+            </button>
+            <h2 id="listTitle" style="margin-bottom: 1.5rem;">Available Tests</h2>
+            
+            <div class="papers-list" id="papersList">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+
+    </div>
+
+    
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-glow-line"></div>
+        <div class="footer-content">
+            <div class="footer-brand-section">
+                <a href="#" class="brand footer-brand-logo">
+                    <div class="logo-mark">M</div>
+                    <span class="brand-text">Mockly</span>
+                </a>
+                <p class="footer-desc">India's most technologically advanced test series platform. Train on the exact real-exam interface and claim your unfair advantage.</p>
+                <div class="social-links-premium">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-section">
+                <div class="footer-link-group">
+                    <h4>Top Exams</h4>
+                    <a href="#">SSC CGL Test Series</a>
+                    <a href="#">SBI PO Mock Test</a>
+                    <a href="#">RRB NTPC Mocks</a>
+                    <a href="#">UPSC Prelims</a>
+                    <a href="#">CTET Paper 1</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Study Resources</h4>
+                    <a href="#">Free PDF Notes</a>
+                    <a href="#">Exam Syllabus</a>
+                    <a href="#">Previous Year Papers</a>
+                    <a href="#">Topper Strategies</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4>Platform</h4>
+                    <a href="#">Mockly Pass PRO</a>
+                    <a href="#">AI Analytics</a>
+                    <a href="#">TCS Interface</a>
+                    <a href="#">Pricing</a>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Ahead</h4>
+                    <p>Get the latest exam alerts and daily GK updates delivered straight to your inbox.</p>
+                    <form class="premium-newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <div class="app-downloads-mini">
+                        <p>Get the App</p>
+                        <div class="dl-buttons">
+                            <a href="#"><i class="fa-brands fa-google-play"></i></a>
+                            <a href="#"><i class="fa-brands fa-apple"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2026 Mockly Premium. All rights reserved.
+            </div>
+            <div class="footer-legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mock data to demonstrate frontend logic without backend initially
+        // Real implementation will fetch from /api/ssc/papers?paperType=...
+        const mockPapers = [
+            { _id: '1', title: 'SSC CGL Tier 1 Full Mock 1', duration: 60, totalMarks: 200, questionsCount: 100, paperType: 'Full Length Mock' },
+            { _id: '2', title: 'SSC CGL Tier 1 Full Mock 2', duration: 60, totalMarks: 200, questionsCount: 100, paperType: 'Full Length Mock' },
+            { _id: '3', title: 'Quantitative Aptitude Sectional 1', duration: 15, totalMarks: 50, questionsCount: 25, paperType: 'Sectional' },
+            { _id: '4', title: 'CGL 2023 Tier 1 (Shift 1, 14th July)', duration: 60, totalMarks: 200, questionsCount: 100, paperType: 'PYP' },
+        ];
+
+        async function loadPapers(type) {
+            document.getElementById('categoryGrid').style.display = 'none';
+            document.getElementById('papersListWrapper').style.display = 'block';
+            document.getElementById('listTitle').innerText = `${type} Tests`;
+            
+            const listContainer = document.getElementById('papersList');
+            listContainer.style.display = 'flex';
+            listContainer.innerHTML = '<p>Loading tests...</p>';
+
+            try {
+                // Real backend call (uncomment when backend is running)
+                /*
+                const response = await fetch(`${((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:5000' : 'https://mockly-backend-fk2i.onrender.com') + '' : 'https://mockly-backend-fk2i.onrender.com')}/api/ssc/papers?paperType=${type}`);
+                const data = await response.json();
+                */
+                
+                // Using mock data for immediate UI rendering check
+                const data = mockPapers.filter(p => p.paperType === type);
+
+                listContainer.innerHTML = '';
+                
+                if (data.length === 0) {
+                    listContainer.innerHTML = '<p>No tests available in this category yet.</p>';
+                    return;
+                }
+
+                data.forEach(paper => {
+                    const item = document.createElement('div');
+                    item.className = 'paper-item';
+                    item.innerHTML = `
+                        <div class="paper-info">
+                            <h4>${paper.title}</h4>
+                            <div class="paper-meta">
+                                <span><i class="fa-regular fa-clock"></i> ${paper.duration} Mins</span>
+                                <span><i class="fa-solid fa-list-ol"></i> ${paper.questionsCount || 100} Qs</span>
+                                <span><i class="fa-solid fa-check-double"></i> ${paper.totalMarks} Marks</span>
+                            </div>
+                        </div>
+                        <button class="btn-start" onclick="startTest('${paper._id}')">Start Test</button>
+                    `;
+                    listContainer.appendChild(item);
+                });
+            } catch (error) {
+                console.error(error);
+                listContainer.innerHTML = '<p style="color: red;">Error loading tests. Is backend running?</p>';
+            }
+        }
+
+        function showCategories() {
+            document.getElementById('categoryGrid').style.display = 'grid';
+            document.getElementById('papersListWrapper').style.display = 'none';
+        }
+
+        function startTest(paperId) {
+            // Usually, we would hit POST /api/ssc/test/start/:paperId here to init session
+            // Then redirect to the TCS Exam interface
+            window.location.href = `tcs-exam.html?paperId=${paperId}`;
+        }
+    </script>
+</body>
+</html>

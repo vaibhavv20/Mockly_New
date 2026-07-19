@@ -1,0 +1,54 @@
+[
+    {
+        "id": "1",
+        "status": "LIVE NOW",
+        "isLive": true,
+        "participants": 45210,
+        "title": "SSC CGL Tier 1 All India Mega Mock",
+        "duration": "60 Mins",
+        "questions": "100 Questions",
+        "languages": "English / Hindi",
+        "timeInfo": "Ends in: <span class=\"text-red\">12:45:00</span>",
+        "buttonText": "Attempt Now",
+        "buttonClass": "btn-primary"
+    },
+    {
+        "id": "2",
+        "status": "UPCOMING",
+        "isLive": false,
+        "participants": 12050,
+        "title": "RRB NTPC CBT-1 Full Mock",
+        "duration": "90 Mins",
+        "questions": "100 Questions",
+        "languages": "English / Hindi / Telugu",
+        "timeInfo": "Starts: <b>Tomorrow, 10 AM</b>",
+        "buttonText": "Notify Me",
+        "buttonClass": "btn-ghost"
+    },
+    {
+        "id": "3",
+        "status": "UPCOMING",
+        "isLive": false,
+        "participants": 8400,
+        "title": "IBPS PO Prelims 2024",
+        "duration": "60 Mins",
+        "questions": "100 Questions",
+        "languages": "English / Hindi",
+        "timeInfo": "Starts: <b>Sunday, 9 AM</b>",
+        "buttonText": "Notify Me",
+        "buttonClass": "btn-ghost"
+    },
+    {
+        "id": "4",
+        "status": "UPCOMING",
+        "isLive": false,
+        "participants": 15200,
+        "title": "CTET Paper 1 Complete Mock",
+        "duration": "150 Mins",
+        "questions": "150 Questions",
+        "languages": "English / Hindi",
+        "timeInfo": "Starts: <b>25th June, 10 AM</b>",
+        "buttonText": "Notify Me",
+        "buttonClass": "btn-ghost"
+    }
+]
